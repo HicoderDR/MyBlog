@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>我如何创建自己的博客 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="react-native考察：对比Flutter" href="react-native1.html" />
+    <link rel="prev" title="博客计划" href="first-post.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-post.html">博客计划</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">我如何创建自己的博客</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#github-pages">GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ablog">ablog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">如何更改博客的主题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">如何发布自己的贴子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rst">rst文档的写法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">ablog常用指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">资料链接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native2.html">react-native入门</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>我如何创建自己的博客</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ablog.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>我如何创建自己的博客<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="github-pages">
+<h2>GitHub Pages<a class="headerlink" href="#github-pages" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>转到GitHub并创建一个名为username.github.io的Repository，其中username是GitHub上的用户名</p>
+</div></blockquote>
+<img alt="_images/githubpages.png" src="_images/githubpages.png" />
+</div>
+<div class="section" id="ablog">
+<h2>ablog<a class="headerlink" href="#ablog" title="Permalink to this headline">¶</a></h2>
+<p>首先在终端输入
+<strong>pip install -U ablog</strong>
+安装ablog</p>
+<p>然后cd至你希望保存源码的目录下
+<strong>ablog start</strong>
+初始化项目</p>
+<p>你需要键入几项初始信息，如下</p>
+<img alt="_images/ablogstart.png" src="_images/ablogstart.png" />
+<p>在此之后
+<strong>ablog build</strong>
+完成构建</p>
+<p><strong>ablog serve</strong>
+在本地预览博客</p>
+<p>最后使用
+<strong>ablog depoly -g username</strong>
+将博客更新至github上</p>
+<p>至此初始博客已经被推送到username.github.io上了</p>
+</div>
+<div class="section" id="id2">
+<h2>如何更改博客的主题<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>安装第三方主题</p>
+<p>很多第三方主题可以在PyPI, GitHub and sphinx-themes.org上找到</p>
+<p>在此以我使用的sphinx_rtd_themew为例</p>
+<p>首先
+<strong>pip install sphinx_rtd_theme</strong></p>
+<p>然后</p>
+<img alt="_images/theme4.png" src="_images/theme4.png" />
+<dl>
+<dt>此外推荐一些其他可行的主题：</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/kennethreitz-archive/kr-sphinx-themes">kr-sphinx-themes</a></div>
+<div class="line">有两个漂亮，干净的主题，用于许多流行（和好看）的项目。</div>
+<div class="line"><a class="reference external" href="https://sphinx-readable-theme.readthedocs.io/en/latest/">sphinx-readable-theme</a></div>
+<div class="line">是一个针对apidoc生成的文档的可读性进行了优化的主题。</div>
+<div class="line"><a class="reference external" href="https://sphinxtheme-readability.readthedocs.io/en/latest/">sphinxtheme-readability</a></div>
+<div class="line">是另一种干净主题的尝试。</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h2>如何发布自己的贴子<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>新建xxx.rst文件</p>
+<img alt="_images/post.png" src="_images/post.png" />
+<p>首先必须申明..post的时间和作者</p>
+<p>然后根据特殊需要添加参数，比如给文章添加Tag(标记)，category(分类)
+……<a class="reference external" href="https://ablog.readthedocs.io/manual/posting-and-listing/">详见官方文档</a></p>
+<p>将其添加在index.rst的toctree中</p>
+<img alt="_images/toctree.png" src="_images/toctree.png" />
+</div>
+<div class="section" id="rst">
+<h2>rst文档的写法<a class="headerlink" href="#rst" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.jianshu.com/p/f60e9be4781d">reStructuredtext快速入门</a></p>
+<p>此外可以使用VScode安装reStructuredtext扩展，即可分屏预览</p>
+<img alt="_images/vscode.png" src="_images/vscode.png" />
+</div>
+<div class="section" id="id5">
+<h2>ablog常用指令<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p><strong>ablog start</strong>
+初始化ablog</p>
+<p><strong>ablog build</strong>
+构建ablog</p>
+<p><strong>ablog serve</strong>
+本地预览ablog</p>
+<p><strong>ablog depoly -g username</strong>
+将博客同步到github</p>
+<p><strong>ablog clean -D</strong>
+清楚build文件</p>
+</div>
+<div class="section" id="id6">
+<h2>资料链接<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://pages.github.com/">Github官方文档</a></p>
+<p><a class="reference external" href="https://ablog.readthedocs.io/">ablog官方文档</a></p>
+<p><a class="reference external" href="http://www.sphinx-doc.org/en/master/">sphinx官方文档</a></p>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="react-native1.html" class="btn btn-neutral float-right" title="react-native考察：对比Flutter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="first-post.html" class="btn btn-neutral float-left" title="博客计划" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

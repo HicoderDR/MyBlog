@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>react-native入门 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="react-native考察：对比Flutter" href="react-native1.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-post.html">博客计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ablog.html">我如何创建自己的博客</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">react-native入门</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rn">RN环境搭建</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">虚拟机或真机调试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">创建第一个项目</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>react-native入门</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/react-native2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native">
+<h1>react-native入门<a class="headerlink" href="#react-native" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rn">
+<h2>RN环境搭建<a class="headerlink" href="#rn" title="Permalink to this headline">¶</a></h2>
+<p>首先根据自己的设备和机型，参阅 <a class="reference external" href="https://reactnative.cn/docs/getting-started.html">RN官方指南</a> 完成环境搭建。</p>
+<p>以下内容皆以windows+android为环境基础</p>
+</div>
+<div class="section" id="id2">
+<h2>虚拟机或真机调试<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>总结：进入开发者模式，打开USB调试即可。</p>
+<p>不同手机进入开发者模式的方法不同，
+如honor需要进入
+<strong>关于手机</strong>
+后点击版本号十次，
+而OPPO则可以直接在手机的辅助选项中打开。</p>
+<p>连接完毕后，终端输入
+<strong>adb devices</strong>
+检查连接情况。ADB报错通过
+<strong>adb start-server</strong>
+和
+<strong>adb kill-server</strong>
+重试。</p>
+</div>
+<div class="section" id="id3">
+<h2>创建第一个项目<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>打开终端，cd到目录下，输入
+<strong>react-native init ProjectName</strong></p>
+<p>项目初始化完毕后，cd到项目内
+<strong>react-native run-android</strong></p>
+<p>过程中如果出现dependence（依赖）问题可以
+<strong>npm install</strong>
+后再重新run</p>
+<p>静待项目loading，完成后在手机上出现React-native的简约风示例程序</p>
+<img alt="_images/startpage.png" src="_images/startpage.png" />
+<p>虚拟机通过Menu键、真机仅需摇晃手机 进入开发者控制台体验RN框架中的调试功能
+，包括重载、JS 调试、热重载、事件监管。</p>
+<p>至此环境搭建完成，欢迎您进入React-native的美好世界（上贼船，入煤坑）</p>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="react-native1.html" class="btn btn-neutral float-left" title="react-native考察：对比Flutter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
