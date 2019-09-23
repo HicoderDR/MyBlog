@@ -29,3 +29,4 @@
    react-native1.rst
    react-native2.rst
    react-native3.rst
+   react-native4.rst
