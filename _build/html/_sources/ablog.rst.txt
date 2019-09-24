@@ -34,7 +34,7 @@ ablog
 在本地预览博客
 
 最后使用
-**ablog depoly -g username**
+**ablog deploy -g username**
 将博客更新至github上
 
 至此初始博客已经被推送到username.github.io上了
@@ -96,7 +96,7 @@ ablog常用指令
 **ablog serve**
 本地预览ablog
 
-**ablog depoly -g username**
+**ablog deploy -g username**
 将博客同步到github
 
 **ablog clean -D**

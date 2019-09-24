@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>react-native初识: state 和 props &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="react-native初识:目录结构与HelloWorld" href="react-native3.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-post.html">博客计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ablog.html">我如何创建自己的博客</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">react-native初识: state 和 props</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#component">Component内部结构</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">回顾标准Component：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">state(状态)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">props(属性)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">父组件向子组件传递props</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">子组件向父组件传递props</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>react-native初识: state 和 props</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/react-native4.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native-state-props">
+<h1>react-native初识: <a class="reference external" href="https://reactnative.cn/docs/state/">state</a> 和 <a class="reference external" href="https://reactnative.cn/docs/props/">props</a><a class="headerlink" href="#react-native-state-props" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="component">
+<h2>Component内部结构<a class="headerlink" href="#component" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>回顾标准Component：<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">Component</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">Text</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native&#39;</span><span class="p">;</span>
+<span class="o">//</span><span class="n">以上为引入的组件</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">HelloWorldApp</span> <span class="n">extends</span> <span class="n">Component</span><span class="p">{</span>
+    <span class="o">//</span><span class="n">定义构造函数</span> <span class="n">和</span> <span class="n">成员变量</span>
+    <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">){</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">=</span><span class="p">{</span>
+
+        <span class="p">};</span>
+    <span class="p">}</span>
+    <span class="o">//</span><span class="n">定义其他函数</span>
+    <span class="n">Test</span><span class="p">(){</span>
+        <span class="o">//</span><span class="n">你想写的内容</span>
+    <span class="p">}</span>
+    <span class="o">//</span><span class="n">渲染函数</span>
+    <span class="n">render</span><span class="p">(){</span>
+        <span class="o">//</span><span class="n">你想写的内容</span>
+        <span class="o">//</span><span class="n">返回值</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="o">//</span><span class="n">组件真正渲染的视图</span>
+            <span class="o">&lt;</span><span class="n">Text</span><span class="o">&gt;</span><span class="n">Hello</span> <span class="n">World</span><span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3><a class="reference external" href="https://reactnative.cn/docs/state/">state(状态)</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>首先，state的用处是什么呢？主要和
+<a class="reference external" href="https://www.jianshu.com/p/c21e0314beef">Component生命周期</a>
+有关。</p>
+<p>当某些值变化的时候，我们希望能重新render（刷新界面）
+，这就是state最基本的用途。</p>
+<img alt="_images/life.png" src="_images/life.png" />
+<p>这些生命周期函数，我们都是可以覆写的，比如说</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span> <span class="n">extends</span> <span class="n">Component</span><span class="p">{</span>
+    <span class="n">componentDidMount</span><span class="p">(){</span>
+        <span class="n">getData</span><span class="p">();</span>
+        <span class="o">//</span><span class="n">初次进入界面的时候需要做的事情</span>
+        <span class="o">//</span><span class="n">比如请求数据</span>
+    <span class="p">}</span>
+    <span class="n">render</span><span class="p">(){</span>
+        <span class="o">//......</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>State是我们刷新界面的便捷接口，
+我们只要通过setState()方法，
+更改state的同时就自动重新渲染</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span> <span class="n">extends</span> <span class="n">Component</span><span class="p">{</span>
+    <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">){</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">=</span><span class="p">{</span>
+            <span class="n">text</span><span class="p">:</span><span class="s2">&quot;init&quot;</span><span class="p">,</span>
+            <span class="n">data</span><span class="p">:[],</span>
+            <span class="o">//</span><span class="n">定义state</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">render</span><span class="p">(){</span>
+        <span class="o">&lt;</span><span class="n">View</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Text</span><span class="o">&gt;</span>
+                <span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">text</span><span class="p">}</span>
+            <span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Button</span>
+                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;点我！&quot;</span>
+                <span class="n">onPress</span><span class="o">=</span><span class="p">{()</span><span class="o">=&gt;</span><span class="p">{</span>
+                    <span class="n">this</span><span class="o">.</span><span class="n">setState</span><span class="p">({</span>
+                        <span class="n">text</span><span class="p">:</span><span class="s2">&quot;mod&quot;</span>
+                    <span class="p">});</span>
+                <span class="p">}}</span>
+            <span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><a class="reference external" href="https://reactnative.cn/docs/props/">props(属性)</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>就如我们熟知的面向对象思想，这就是所谓的类成员，
+它可以是一个变量，也可以是一个函数。</p>
+<div class="section" id="id7">
+<h4>父组件向子组件传递props<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<p>父组件中</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React, { Component } from &#39;react&#39;;
+import { Text } from &#39;react-native&#39;;
+import Son from &#39;./Son&#39;
+
+export default class Father extends Component{
+    fuc1(parm){
+        //你的内容
+    }
+    fuc2=()=&gt;{
+        //你的内容
+    }
+    render(){
+        var x=&quot;myname&quot;;                 //定义一个x
+        return(
+            &lt;Son
+                name={this.x}           //传递值给Son
+                fuc1={ (parm)=&gt;{
+                    this.fuc1(parm);
+                }}                      //传递函数方法 第一种写法“传调用”
+                fuc2={this.fuc2}        //传递函数方法 第二种写法“传引用”
+            /&gt;
+        );
+    }
+}
+</pre></div>
+</div>
+<p>子组件中</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">Component</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">Text</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native&#39;</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">Son</span> <span class="n">extends</span> <span class="n">Component</span><span class="p">{</span>
+    <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">){</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>                     <span class="o">//</span><span class="n">这时就继承了props</span>
+    <span class="p">}</span>
+    <span class="n">render</span><span class="p">(){</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">name</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h4>子组件向父组件传递props<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>父组件中</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">Component</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">Text</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">Son</span> <span class="kn">from</span> <span class="s1">&#39;./Son&#39;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">Father</span> <span class="n">extends</span> <span class="n">Component</span><span class="p">{</span>
+    <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">){</span>
+
+    <span class="p">}</span>
+    <span class="n">_set</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">setState</span><span class="p">({</span>
+            <span class="n">year</span><span class="p">:</span><span class="n">year</span><span class="p">,</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+    <span class="n">render</span><span class="p">(){</span>
+        <span class="n">var</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;myname&quot;</span><span class="p">;</span>                 <span class="o">//</span><span class="n">定义一个x</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">Son</span>
+                <span class="n">_set</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">_set</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">this</span><span class="p">)}</span>
+                <span class="o">//</span><span class="n">将父组件函数与子组件绑定</span>
+            <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="n">Text</span><span class="o">&gt;</span>
+                <span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">year</span><span class="p">}</span>
+            <span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>子组件中</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">Son</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+    <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">View</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">Text</span>
+                    <span class="n">onPress</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                        <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">_set</span><span class="p">(</span><span class="n">year</span><span class="p">);</span>
+                    <span class="p">}}</span>
+                <span class="o">&gt;</span>
+                <span class="n">点击</span>
+                <span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="react-native3.html" class="btn btn-neutral float-left" title="react-native初识:目录结构与HelloWorld" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
