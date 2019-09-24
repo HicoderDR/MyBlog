@@ -11,7 +11,7 @@
 
 博客列表:
 
-.. postlist:: 5
+.. postlist:: 8
    :excerpts:
 
 

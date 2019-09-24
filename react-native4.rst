@@ -1,4 +1,4 @@
-.. post::Sep 10 , 2019
+.. post::Sep 20 , 2019
    :tags: directive
    :category: react-native
    :author: HicoderDR
