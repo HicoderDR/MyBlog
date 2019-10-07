@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>react-native初识:目录结构与HelloWorld &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about/" />
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="react-native初识: state 和 props" href="../react-native4/" />
+    <link rel="prev" title="react-native入门" href="../react-native2/" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="../blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-post/">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ablog/">我如何创建自己的博客</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native1/">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native2/">react-native入门</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">react-native初识:目录结构与HelloWorld</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#react-native">React-native的目录结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#helloworld">HelloWorld</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#index-js">观察index.js的内容</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app-js">更改App.js的内容</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native4/">react-native初识: state 和 props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native5/">react-native初识:布局和CSS样式、第三方库的引入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native6/">react-native初识：我使用的组件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native7/">react-native实战:轮播引导和登陆注册</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../">Docs</a> &raquo;</li>
+        
+      <li>react-native初识:目录结构与HelloWorld</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/react-native3.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native-helloworld">
+<h1>react-native初识:目录结构与HelloWorld<a class="headerlink" href="#react-native-helloworld" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="react-native">
+<h2>React-native的目录结构<a class="headerlink" href="#react-native" title="Permalink to this headline">¶</a></h2>
+<p>经过init后的react-native目录</p>
+<img alt="../_images/table1.png" src="../_images/table1.png" />
+<dl class="simple">
+<dt>_tests_</dt><dd><p>单元测试所用文件</p>
+</dd>
+<dt>android</dt><dd><p>存放android有关目录，其中的目录结构与原生android一致。</p>
+</dd>
+<dt>ios</dt><dd><p>同上，ios原生结构文件夹</p>
+</dd>
+<dt>node_modules</dt><dd><p>项目中所有的模组，引入的依赖、库都将被安装在其中</p>
+</dd>
+<dt>index.js</dt><dd><p>项目默认的入口文件</p>
+</dd>
+<dt>App.js</dt><dd><p>项目默认创建的第一个组件（Component）</p>
+</dd>
+<dt>package.json</dt><dd><p>管理项目所有依赖包的json文件</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="helloworld">
+<h2>HelloWorld<a class="headerlink" href="#helloworld" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="index-js">
+<h3>观察index.js的内容<a class="headerlink" href="#index-js" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span><span class="n">AppRegistry</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">App</span> <span class="kn">from</span> <span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">name</span> <span class="k">as</span> <span class="n">appName</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;./app.json&#39;</span><span class="p">;</span>
+
+<span class="n">AppRegistry</span><span class="o">.</span><span class="n">registerComponent</span><span class="p">(</span><span class="n">appName</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">App</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>可以发现，通过import和registerComponent，项目的入口被转到了App.js</p>
+</div>
+<div class="section" id="app-js">
+<h3>更改App.js的内容<a class="headerlink" href="#app-js" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">Component</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">Text</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native&#39;</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">APP</span> <span class="n">extends</span> <span class="n">Component</span><span class="p">{</span>
+    <span class="n">render</span><span class="p">(){</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">Text</span><span class="o">&gt;</span><span class="n">Hello</span> <span class="n">World</span><span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>接下来只需要
+<strong>react-native run-android</strong>
+便可以查看到Hello world的结果了</p>
+<dl class="simple">
+<dt>Tips</dt><dd><p>在一个js文件中我们可以创建多个
+<strong>class</strong>
+（Component），添加export default即将其作为该文件的默认入口</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../react-native4/" class="btn btn-neutral float-right" title="react-native初识: state 和 props" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../react-native2/" class="btn btn-neutral float-left" title="react-native入门" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

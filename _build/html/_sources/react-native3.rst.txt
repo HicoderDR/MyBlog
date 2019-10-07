@@ -1,5 +1,6 @@
-.. post::Sep 10 , 2019
-   :tags: directive
+
+.. post::Sep 14 , 2019
+   :tags: react-native
    :category: react-native
    :author: HicoderDR
 
@@ -55,7 +56,7 @@ HelloWorld
     import React, { Component } from 'react';
     import { Text } from 'react-native';
 
-    export default class HelloWorldApp extends Component{
+    export default class APP extends Component{
         render(){
             return(
                 <Text>Hello World</Text>

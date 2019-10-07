@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>react-native初识：我使用的组件 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="react-native初识:布局和CSS样式、第三方库的引入" href="react-native5.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-post.html">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ablog.html">我如何创建自己的博客</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native4.html">react-native初识: state 和 props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native5.html">react-native初识:布局和CSS样式、第三方库的引入</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">react-native初识：我使用的组件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">我使用的组件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#react-navigation">1.React Navigation(界面跳转、路由)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app-js">首先修改App.js</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">然后在添加进路由的所有页面中使用</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#asyncstorage">2.Asyncstorage(本地存储)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#async-await-promise">3.async，await，promise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nativebase">4.NativeBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#react-native-vector-icons">5. react-native-vector-icons(精美图标库)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customimage">6.CustomImage（图片预加载）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#react-native-image-crop-picker">7.react-native-image-crop-picker(相机和相册)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#react-native-share">8.react-native-share(分享组件)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#react-native-material-ui-ui">9.react-native-material-ui(UI组件库)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#react-native-image-zoom-viewer">10.react-native-image-zoom-viewer(图片查看组件)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>react-native初识：我使用的组件</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/react-native6.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native">
+<h1>react-native初识：我使用的组件<a class="headerlink" href="#react-native" title="Permalink to this headline">¶</a></h1>
+<p>首先，你必须先了解RN的基础组件</p>
+<p><a class="reference external" href="https://reactnative.cn/docs/components-and-apis/">这里是原生react-native的基础组件</a></p>
+<p>其次，可以在社区上找到很多更加好用的组件</p>
+<div class="section" id="id2">
+<h2>我使用的组件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="react-navigation">
+<h3>1.React Navigation(界面跳转、路由)<a class="headerlink" href="#react-navigation" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://reactnavigation.org/docs/en/getting-started.html">这里是Navigation官方文档</a></p>
+<div class="section" id="app-js">
+<h4>首先修改App.js<a class="headerlink" href="#app-js" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="kn">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">Root</span> <span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;native-base&quot;</span><span class="p">;</span>
+
+<span class="c1">#引入 堆栈型导航器</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">createStackNavigator</span><span class="p">,</span> <span class="n">createAppContainer</span> <span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;react-navigation&quot;</span><span class="p">;</span>
+<span class="c1">#引入 我写的所有界面</span>
+<span class="kn">import</span> <span class="nn">Login</span> <span class="kn">from</span> <span class="s2">&quot;./Login&quot;</span>
+<span class="kn">import</span> <span class="nn">Mainpage</span> <span class="kn">from</span> <span class="s2">&quot;./Mainpage&quot;</span>
+<span class="kn">import</span> <span class="nn">Pay</span> <span class="kn">from</span> <span class="s2">&quot;./Pay&quot;</span>
+
+<span class="c1">#创建Route(路由)</span>
+<span class="n">const</span> <span class="n">AppNavigator</span> <span class="o">=</span> <span class="n">createStackNavigator</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="c1"># 格式是 string:{screen: class}</span>
+        <span class="n">Login</span><span class="p">:</span> <span class="p">{</span><span class="n">screen</span><span class="p">:</span> <span class="n">Login</span><span class="p">},</span>
+        <span class="n">Main</span><span class="p">:</span> <span class="p">{</span><span class="n">screen</span><span class="p">:</span><span class="n">Mainpage</span><span class="p">},</span>
+        <span class="n">Pay</span><span class="p">:</span> <span class="p">{</span><span class="n">screen</span><span class="p">:</span><span class="n">Pay</span><span class="p">},</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="n">initialRouteName</span><span class="p">:</span> <span class="s2">&quot;Login&quot;</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+<span class="c1">#将创建的Container直接设为app默认入口</span>
+<span class="n">export</span> <span class="n">default</span> <span class="n">createAppContainer</span><span class="p">(</span><span class="n">AppNavigator</span><span class="p">);</span>
+
+<span class="c1">#如果希望在container外进行包装（例如包裹一个root）</span>
+<span class="c1">#const AppContainer = createAppContainer(AppNavigator);</span>
+<span class="c1">#export default class App extends React.Component {</span>
+<span class="c1">#   render() {</span>
+<span class="c1">#    return</span>
+<span class="c1">#       &lt;Root&gt;</span>
+<span class="c1">#           &lt;AppContainer /&gt;</span>
+<span class="c1">#       &lt;/Root&gt;;</span>
+<span class="c1">#   }</span>
+<span class="c1">#}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>然后在添加进路由的所有页面中使用<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#最简单的--打开一个新界面，此时按回退键可以回到原界面</span>
+<span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="o">.</span><span class="n">navigate</span><span class="p">(</span><span class="s2">&quot;Login&quot;</span><span class="p">)</span>
+<span class="c1">#销毁当前界面，替换成新界面</span>
+<span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Login&quot;</span><span class="p">)</span>
+<span class="c1">#新界面压栈，与navigate区别是允许同一界面打开多个</span>
+<span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;Login&quot;</span><span class="p">)</span>
+<span class="c1">#回退</span>
+<span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="o">.</span><span class="n">goBack</span><span class="p">()</span>
+<span class="c1">#如何携带参数</span>
+<span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="o">.</span><span class="n">navigate</span><span class="p">(</span><span class="s2">&quot;ResT&quot;</span><span class="p">,{</span>
+    <span class="n">num</span><span class="p">:</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">num</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1">#此外，还有更多堆栈操作，poptoTop()，reset()，dispatch()等</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://reactnavigation.org/docs/en/stack-actions.html">这里是堆栈操作的官方API</a></p>
+<dl>
+<dt>问:如果一个界面是子组件，不在路由中，但我希望它能使用navigation，怎么办？:</dt><dd><p>答：只需要将navigation传递给它就可以，例如</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">View</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">History</span> <span class="n">navigation</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">&lt;/</span><span class="n">History</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p><a class="reference external" href="https://reactnavigation.org/docs/en/headers.html">如何配置标题栏</a></p>
+<p><a class="reference external" href="https://reactnavigation.org/docs/en/header-buttons.html">如何与标题栏交互</a></p>
+</div>
+</div>
+<div class="section" id="asyncstorage">
+<h3>2.Asyncstorage(本地存储)<a class="headerlink" href="#asyncstorage" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/react-native-community/async-storage">Github项目地址</a></p>
+<p>这个东西的使用其实是很坑的，没有达到我的期望</p>
+<p>但能怎么办嘛，能用的就它一个了……</p>
+<p>使用方法</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#首先要引入</span>
+<span class="kn">import</span> <span class="nn">AsyncStorage</span> <span class="kn">from</span> <span class="s1">&#39;@react-native-community/async-storage&#39;</span><span class="p">;</span>
+
+<span class="c1">#定义一个storedata函数，可以传参</span>
+<span class="n">storeData1</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="n">Json</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">#这里变量名前必须加@，否则无效</span>
+    <span class="k">await</span> <span class="n">AsyncStorage</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="s2">&quot;@username&quot;</span><span class="p">,</span> <span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">userName</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">catch</span><span class="p">(</span><span class="n">e</span><span class="p">){</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">#定义函数的第二种写法</span>
+<span class="k">async</span> <span class="n">storeData2</span><span class="p">(</span><span class="n">Json</span><span class="p">){</span>
+  <span class="n">const</span> <span class="n">first</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;@username&quot;</span><span class="p">,</span> <span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">userName</span><span class="p">]</span>
+  <span class="n">const</span> <span class="n">second</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;@password&quot;</span><span class="p">,</span> <span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">password</span><span class="p">]</span>
+  <span class="c1">#为什么我要用&quot;&quot;+userID，因为后面必须是string，否则无效</span>
+  <span class="n">const</span> <span class="n">third</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;@userid&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="o">+</span><span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">userID</span><span class="p">]</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">#多组数存储必须使用multiset，不能写三个await，否则无效</span>
+    <span class="k">await</span> <span class="n">AsyncStorage</span><span class="o">.</span><span class="n">multiSet</span><span class="p">([</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span><span class="p">]);</span>
+    <span class="c1">#同理，也可以存结构体，list，map</span>
+  <span class="p">}</span><span class="n">catch</span><span class="p">(</span><span class="n">e</span><span class="p">){</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">#取值(只要你存的进去 就取得出来)</span>
+<span class="n">getData</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">_username</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AsyncStorage</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="s1">&#39;@username&#39;</span><span class="p">)</span>
+    <span class="n">const</span> <span class="n">_password</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AsyncStorage</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="s1">&#39;@password&#39;</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">_username</span> <span class="o">!==</span> <span class="n">null</span><span class="o">&amp;&amp;</span><span class="n">_password</span><span class="o">!==</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">this</span><span class="o">.</span><span class="n">setState</span><span class="p">({</span>
+        <span class="n">Username</span><span class="p">:</span> <span class="n">_username</span><span class="p">,</span>
+        <span class="n">Password</span><span class="p">:</span> <span class="n">_password</span><span class="p">,</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="n">catch</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="async-await-promise">
+<h3>3.async，await，promise<a class="headerlink" href="#async-await-promise" title="Permalink to this headline">¶</a></h3>
+<p>既然上面写了async，就顺便介绍一下</p>
+<p>asynchrony（异步），没错，就是令人头秃的异步函数。</p>
+<dl class="simple">
+<dt>”同步“：</dt><dd><p>你去外地上学(人生地不熟)，突然生活费不够了；此时你决定打电话回家，通知家里转生活费过来，可是当你拨出电话时，对方一直处于待接听状态(即：打不通，联系不上)，为了拿到生活费，你就不停的oncall、等待，最终可能不能及时要到生活费，导致你今天要做的事都没有完成，而白白花掉了时间。</p>
+</dd>
+<dt>“异步”：</dt><dd><p>在你打完电话发现没人接听时，猜想：对方可能在忙，暂时无法接听电话，所以你发了一条短信(或者语音留言，亦或是其他的方式)通知对方后便忙其他要紧的事了；这时你就不需要持续不断的拨打电话，还可以做其他事情；待一定时间后，对方看到你的留言便回复响应你，当然对方可能转钱也可能不转钱。但是整个一天下来，你还做了很多事情。 或者说你找室友临时借了一笔钱，又开始happy的上学时光了</p>
+</dd>
+</dl>
+<p><strong>为什么取个值就要异步？</strong></p>
+<p>因为主线程（UI线程）是不允许出现任何卡顿的，Android如果卡顿时间超过1s，程序就会直接被强制关闭。</p>
+<p>那问题来了—-我必须等到数据取完才能做下一步，必须要等，怎么办呢？</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#android JAVA 编程里的写法是
+int flag=0;
+getData();
+while(!flag){
+    #让线程睡1ms，不写就等着爆炸把
+    sleep(1);
+}
+</pre></div>
+</div>
+<p>没错，就是这么真实，再看看RN</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#使用.then((parm)=&gt;{   })的嵌套，以保证运行顺序</span>
+<span class="n">read</span><span class="p">(</span><span class="s1">&#39;1.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">res</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="k">return</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;2.txt&#39;</span><span class="p">);</span>  <span class="c1"># 返回新的数据，然后输出</span>
+<span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;3.txt&#39;</span><span class="p">);</span>
+<span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">toString</span><span class="p">());</span>
+<span class="p">});</span>
+
+<span class="c1">#使用async+await</span>
+<span class="c1">#每当运行到await，就必须等待它的执行，可读性很强</span>
+<span class="k">async</span> <span class="n">function</span> <span class="n">readByAsync</span><span class="p">(){</span>
+    <span class="n">let</span> <span class="n">a1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;1.txt&#39;</span><span class="p">);</span>
+    <span class="n">let</span> <span class="n">a2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;2.txt&#39;</span><span class="p">);</span>
+    <span class="n">let</span> <span class="n">a3</span> <span class="o">=</span> <span class="k">await</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;3.txt&#39;</span><span class="p">);</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">toString</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>async的特点：</dt><dd><ul class="simple">
+<li><p>语义化强</p></li>
+<li><p>里面的await只能在async函数中使用</p></li>
+<li><p>await后面的语句可以是promise对象、数字、字符串等</p></li>
+<li><p>async函数返回的是一个Promsie对象</p></li>
+<li><p>await语句后的Promise对象变成reject状态时，那么整个async函数会中断，后面的程序不会继续执行</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="nativebase">
+<h3>4.NativeBase<a class="headerlink" href="#nativebase" title="Permalink to this headline">¶</a></h3>
+<p>这个就不多说了，真的是见到的最棒的第三方库了</p>
+<p><a class="reference external" href="https://docs.nativebase.io/">不管问几次 我都吹爆 NativeBase</a></p>
+</div>
+<div class="section" id="react-native-vector-icons">
+<h3>5. react-native-vector-icons(精美图标库)<a class="headerlink" href="#react-native-vector-icons" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.npmjs.com/package/react-native-vector-icons">npm官方文档</a></p>
+<p>如何使用</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">MaterialCommunityIcons</span> <span class="kn">from</span> <span class="s1">&#39;react-native-vector-icons/MaterialCommunityIcons&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">FontAwesome</span> <span class="kn">from</span> <span class="s1">&#39;react-native-vector-icons/FontAwesome&#39;</span><span class="p">;</span>
+
+<span class="c1">#在render函数中想要使用的位置，添加对应的图片</span>
+<span class="o">&lt;</span><span class="n">FontAwesome</span>
+    <span class="n">name</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;wpforms&#39;</span><span class="p">}</span>
+    <span class="n">size</span><span class="o">=</span><span class="p">{</span><span class="mi">30</span><span class="p">}</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="n">tintColor</span><span class="p">}</span>
+<span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">MaterialCommunityIcons</span>
+    <span class="n">name</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;face&#39;</span><span class="p">}</span>
+    <span class="n">size</span><span class="o">=</span><span class="p">{</span><span class="mi">30</span><span class="p">}</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="n">tintColor</span><span class="p">}</span>
+<span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://oblador.github.io/react-native-vector-icons/">在这里查找图片索引和对应的图标库</a></p>
+</div>
+<div class="section" id="customimage">
+<h3>6.CustomImage（图片预加载）<a class="headerlink" href="#customimage" title="Permalink to this headline">¶</a></h3>
+<p>在图片未加载完成前使用loading.png</p>
+<p>编写CustomImage.js</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React, {Component} from &#39;react&#39;;
+import {Image, StyleSheet, View} from &quot;react-native&quot;;
+import PropTypes from &#39;prop-types&#39;;
+
+export default class CustomImage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoadComplete: false,
+            type: 0,//0,正常加载，1加载错误，
+        }
+    }
+    static propTypes = {
+        uri: PropTypes.any.isRequired,
+        errImage: PropTypes.number,// 加载错误图片，可不传
+        defaultImage:PropTypes.number,//预加载图片
+        stylenew:PropTypes.style,
+    }
+    static  defaultProps = {
+        #定义default和error
+        defaultImage:require(&#39;../android/app/src/main/res/mipmap-hdpi/load.png&#39;),
+        errImage: require(&#39;../android/app/src/main/res/mipmap-hdpi/error.png&#39;), //默认加载错误图片，可在此统一设置
+    }
+
+    render() {
+        const {uri,defaultImage,errImage, style,stylenew} = this.props;
+        let source = {uri};
+        if (this.state.type === 1) {
+            source = errImage;
+        }
+        return (
+            &lt;View style={[stylenew,style]}&gt;
+                &lt;Image
+                    source={source}
+                    style={[stylenew,{overflow: &#39;hidden&#39;, position: &#39;absolute&#39;,}, style]}
+                    onError={(error) =&gt; {
+                        this.setState({
+                            type: 1,
+                        })
+                    }}
+                    onLoadEnd={() =&gt; {
+                        this.setState({
+                            isLoadComplete: true,
+                        })
+                    }}
+                /&gt;
+                {this.state.isLoadComplete ?null: &lt;Image style={[stylenew,style]} source={defaultImage}/&gt; }
+            &lt;/View&gt;
+        );
+    }
+}
+</pre></div>
+</div>
+<p>在需要使用的地方</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">CustomImage</span> <span class="n">uri</span><span class="o">=</span><span class="p">{</span><span class="n">item</span><span class="o">.</span><span class="n">uri</span><span class="p">}</span> <span class="n">stylenew</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">iconStyle</span><span class="p">}</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="react-native-image-crop-picker">
+<h3>7.react-native-image-crop-picker(相机和相册)<a class="headerlink" href="#react-native-image-crop-picker" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/ivpusic/react-native-image-crop-picker">这里是imagepicker官方文档</a></p>
+<img alt="_images/image-picker.png" src="_images/image-picker.png" />
+<p>使用方法</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span><span class="n">Button</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native-material-ui&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">ImagePicker</span> <span class="kn">from</span> <span class="s1">&#39;react-native-image-crop-picker&#39;</span><span class="p">;</span>
+
+<span class="c1">#在任意组件的onpress事件中触发</span>
+<span class="o">&lt;</span><span class="n">Button</span> <span class="n">raised</span> <span class="n">primary</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;拍照&quot;</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">container</span><span class="p">:{</span><span class="n">borderRadius</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span><span class="n">screenW</span><span class="o">*</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">},</span><span class="n">text</span><span class="p">:{</span><span class="n">fontSize</span><span class="p">:</span><span class="mi">19</span><span class="p">}}}</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;camera-alt&quot;</span>
+    <span class="n">onPress</span><span class="o">=</span><span class="p">{()</span><span class="o">=&gt;</span> <span class="n">ImagePicker</span><span class="o">.</span><span class="n">openCamera</span><span class="p">({</span>
+        <span class="c1">#可以设定裁剪和宽高</span>
+        <span class="n">cropping</span><span class="p">:</span> <span class="n">cropping</span><span class="p">,</span>
+        <span class="n">width</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="n">height</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+    <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">image</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">#可以直接通过 image.path .width .height 来获得信息</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;服务器正在处理您的照片，请耐心等待&quot;</span><span class="p">,</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+    <span class="p">})}</span>
+<span class="o">/&gt;</span>
+
+<span class="o">&lt;</span><span class="n">Button</span> <span class="n">flat</span> <span class="n">primary</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;从相册选择&quot;</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">container</span><span class="p">:{</span><span class="n">height</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="n">width</span><span class="p">:</span><span class="n">screenW</span><span class="o">/</span><span class="mi">3</span><span class="p">}}}</span>
+    <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span>
+    <span class="n">onPress</span><span class="o">=</span><span class="p">{()</span><span class="o">=&gt;</span><span class="n">ImagePicker</span><span class="o">.</span><span class="n">openPicker</span><span class="p">({</span>
+            <span class="c1">#设定为可以选择多张</span>
+            <span class="n">multiple</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">images</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="c1">#如果要对images分别处理</span>
+            <span class="c1">#for(var i in images){</span>
+            <span class="c1">#   const path=images[i].path;</span>
+            <span class="c1">#}</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;服务器正在处理您的照片，请耐心等待&quot;</span><span class="p">,</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">)}</span>
+<span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="react-native-share">
+<h3>8.react-native-share(分享组件)<a class="headerlink" href="#react-native-share" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/songxiaoliang/react-native-share">这里是Github网址</a></p>
+<img alt="_images/share.png" src="_images/share.png" />
+</div>
+<div class="section" id="react-native-material-ui-ui">
+<h3>9.react-native-material-ui(UI组件库)<a class="headerlink" href="#react-native-material-ui-ui" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/xotahal/react-native-material-ui">这里是material-ui Github网址</a></p>
+<img alt="_images/material-ui.png" src="_images/material-ui.png" />
+</div>
+<div class="section" id="react-native-image-zoom-viewer">
+<h3>10.react-native-image-zoom-viewer(图片查看组件)<a class="headerlink" href="#react-native-image-zoom-viewer" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/magicwing/react-native-image-zoom-viewer">这里是image-viewer Github网址</a></p>
+<img alt="_images/image-zoom1.gif" src="_images/image-zoom1.gif" />
+<img alt="_images/image-zoom2.gif" src="_images/image-zoom2.gif" />
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="react-native5.html" class="btn btn-neutral float-left" title="react-native初识:布局和CSS样式、第三方库的引入" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
