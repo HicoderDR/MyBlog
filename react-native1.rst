@@ -44,7 +44,7 @@ react-native考察：对比Flutter
         Flutter将Android和Ios的原生同类组件封装在一起，通过os.system判断进行自适应。
         真正做到了“写一份代码，适配两个系统的伟大工程”。
 
-        但Flutter采用的Dark语言给我一种介于JavaScript和Java之间的错觉，
+        但Flutter采用的Dart语言给我一种介于JavaScript和Java之间的错觉，
         还有它较为年轻的身形，并不完善的文档，人数待扩张的社区，致使我放弃了它。
 
     React-native： 

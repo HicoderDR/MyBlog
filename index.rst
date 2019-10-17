@@ -11,7 +11,7 @@
 
 博客列表:
 
-.. postlist:: 8
+.. postlist:: 11
    :excerpts:
 
 
@@ -33,3 +33,5 @@
    react-native5.rst
    react-native6.rst
    react-native7.rst
+   react-native8.rst
+   react-native9.rst

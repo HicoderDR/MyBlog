@@ -1,4 +1,4 @@
-.. post::Oct 6,2019
+.. post::Oct 5,2019
     :tags:react-native
     :category:react-native
     :author:HicoderDR

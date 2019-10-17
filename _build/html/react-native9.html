@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>react-native实战:支付宝接入app支付 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-post.html">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ablog.html">我如何创建自己的博客</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native4.html">react-native初识: state 和 props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native5.html">react-native初识:布局和CSS样式、第三方库的引入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native6.html">react-native初识：我使用的组件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native7.html">react-native实战:轮播引导和登陆注册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native8.html">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>react-native实战:支付宝接入app支付</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/react-native9.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native-app">
+<h1>react-native实战:支付宝接入app支付<a class="headerlink" href="#react-native-app" title="Permalink to this headline">¶</a></h1>
+<p>效果如下：</p>
+<img alt="_images/alipay.png" src="_images/alipay.png" />
+<div class="section" id="id1">
+<h2>支付宝开放平台配置<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>首先商户入驻，选择支付接入，并添加自己的app</p>
+<img alt="_images/alipay1.png" src="_images/alipay1.png" />
+<img alt="_images/alipay2.png" src="_images/alipay2.png" />
+<p>添加app支付的功能，同时按照平台内指示建立RSA2密钥</p>
+<img alt="_images/alipay3.png" src="_images/alipay3.png" />
+</div>
+<div class="section" id="springboot">
+<h2>springboot后台配置<a class="headerlink" href="#springboot" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mavensdk">
+<h3>1.首先在maven中引入SDK<a class="headerlink" href="#mavensdk" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- 支付宝支付 SDK  --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.alipay.sdk&lt;/groupId&gt;
+    &lt;artifactId&gt;alipay-sdk-java&lt;/artifactId&gt;
+    &lt;version&gt;3.7.4.ALL&lt;/version&gt;
+&lt;/dependency&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="alipayconfig-token">
+<h3>2.然后新建一个AlipayConfig类，存储私密的token<a class="headerlink" href="#alipayconfig-token" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="k">class</span> <span class="nc">AlipayConfig</span> <span class="p">{</span>
+    <span class="c1"># 应用ID,您的APPID，收款账号既是您的APPID对应支付宝账号,开发时使用沙箱提供的APPID，生产环境改成自己的APPID</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">String</span> <span class="n">APP_ID</span> <span class="o">=</span> <span class="s2">&quot;2019xxxxxxxxx&quot;</span><span class="p">;</span>
+    <span class="c1"># 商户私钥，您的PKCS8格式RSA2私钥</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">String</span> <span class="n">APP_PRIVATE_KEY</span> <span class="o">=</span><span class="s2">&quot;xxxxxxxxx&quot;</span><span class="p">;</span>
+    <span class="c1"># 支付宝公钥,查看地址：https://openhome.alipay.com/platform/keyManage.htm 对应APPID下的支付宝公钥。</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">String</span> <span class="n">ALIPAY_PUBLIC_KEY</span> <span class="o">=</span> <span class="s2">&quot;xxxxxxxx&quot;</span><span class="p">;</span>
+    <span class="c1"># 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">String</span> <span class="n">notify_url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:port/notify&quot;</span><span class="p">;</span>
+    <span class="c1"># 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问(其实就是支付成功后返回的页面)</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">String</span> <span class="n">return_url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:port/alipay.trade.page.pay-JAVA-UTF-8/return_url.jsp&quot;</span><span class="p">;</span>
+    <span class="c1"># 签名方式</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">String</span> <span class="n">sign_type</span> <span class="o">=</span> <span class="s2">&quot;RSA2&quot;</span><span class="p">;</span>
+    <span class="c1"># 字符编码格式</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">String</span> <span class="n">CHARSET</span> <span class="o">=</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">;</span>
+    <span class="c1"># 支付宝网关，这是沙箱的网关</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">String</span> <span class="n">gatewayUrl</span> <span class="o">=</span> <span class="s2">&quot;https://openapi.alipay.com/gateway.do&quot;</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pay">
+<h3>3.完成pay请求<a class="headerlink" href="#pay" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s2">&quot;/gotopay&quot;</span><span class="p">)</span>
+<span class="n">public</span> <span class="n">String</span> <span class="n">gopay</span><span class="p">(</span><span class="nd">@RequestParam</span> <span class="nb">int</span> <span class="n">userID</span><span class="p">,</span><span class="nd">@RequestParam</span> <span class="n">double</span> <span class="n">money</span><span class="p">,</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">subject</span><span class="p">,</span> <span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">body</span><span class="p">)</span> <span class="n">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+
+    <span class="c1">#后台根据传入的UserID创建新的订单（自定义）,重点是获取订单号</span>
+    <span class="n">Order</span> <span class="n">neworder</span><span class="o">=</span> <span class="n">orderService</span><span class="o">.</span><span class="n">addOrder</span><span class="p">(</span><span class="n">userID</span><span class="p">,</span> <span class="n">money</span><span class="p">,</span><span class="s2">&quot;ali&quot;</span><span class="p">);</span>
+
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nb">map</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="n">AlipayClient</span> <span class="n">alipayClient</span> <span class="o">=</span> <span class="n">new</span> <span class="n">DefaultAlipayClient</span><span class="p">(</span><span class="n">AlipayConfig</span><span class="o">.</span><span class="n">gatewayUrl</span><span class="p">,</span> <span class="n">AlipayConfig</span><span class="o">.</span><span class="n">APP_ID</span><span class="p">,</span> <span class="n">AlipayConfig</span><span class="o">.</span><span class="n">APP_PRIVATE_KEY</span><span class="p">,</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">AlipayConfig</span><span class="o">.</span><span class="n">CHARSET</span><span class="p">,</span> <span class="n">AlipayConfig</span><span class="o">.</span><span class="n">ALIPAY_PUBLIC_KEY</span><span class="p">,</span> <span class="n">AlipayConfig</span><span class="o">.</span><span class="n">sign_type</span><span class="p">);</span>
+    <span class="n">AlipayTradeAppPayRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">new</span> <span class="n">AlipayTradeAppPayRequest</span><span class="p">();</span>
+    <span class="n">AlipayTradeAppPayModel</span> <span class="n">model</span> <span class="o">=</span> <span class="n">new</span> <span class="n">AlipayTradeAppPayModel</span><span class="p">();</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">setBody</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>                                            <span class="c1">#商品信息</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">setSubject</span><span class="p">(</span><span class="n">subject</span><span class="p">);</span>                                      <span class="c1">#商品名称</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">setOutTradeNo</span><span class="p">(</span><span class="n">String</span><span class="o">.</span><span class="n">valueOf</span><span class="p">(</span><span class="n">neworder</span><span class="o">.</span><span class="n">getOrderID</span><span class="p">()));</span>     <span class="c1">#订单号</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">setTimeoutExpress</span><span class="p">(</span><span class="s2">&quot;30m&quot;</span><span class="p">);</span>                                 <span class="c1">#支付超时时间</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">setTotalAmount</span><span class="p">(</span><span class="n">String</span><span class="o">.</span><span class="n">valueOf</span><span class="p">(</span><span class="n">money</span><span class="p">));</span>                    <span class="c1">#支付金额</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">setProductCode</span><span class="p">(</span><span class="s2">&quot;QUICK_MSECURITY_PAY&quot;</span><span class="p">);</span>                    <span class="c1">#申明类别为快速安全支付(默认)</span>
+
+    <span class="n">request</span><span class="o">.</span><span class="n">setBizModel</span><span class="p">(</span><span class="n">model</span><span class="p">);</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">setNotifyUrl</span><span class="p">(</span><span class="n">AlipayConfig</span><span class="o">.</span><span class="n">notify_url</span><span class="p">);</span>                  <span class="c1"># 回调地址</span>
+
+   <span class="c1">#这里和普通的接口调用不同，使用的是sdkExecute</span>
+    <span class="n">AlipayTradeAppPayResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">alipayClient</span><span class="o">.</span><span class="n">sdkExecute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">getBody</span><span class="p">();</span>                                  <span class="c1">#将sdk给的body字符串作为结果返回</span>
+    <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">AlipayApiException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="n">printStackTrace</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="s2">&quot;fail&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="notify">
+<h3>4.完成notify请求(可选，出于支付安全考虑，需要验签和对应处理)<a class="headerlink" href="#notify" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>@ResponseBody
+@RequestMapping(&quot;/notify&quot;)
+public String notify(HttpServletRequest request, HttpServletResponse response) {
+        Map&lt;String, String&gt; params = new HashMap&lt;String, String&gt;();
+        #从支付宝回调的request域中取值
+        Map&lt;String, String[]&gt; requestParams = request.getParameterMap();
+
+        for (Iterator&lt;String&gt; iter = requestParams.keySet().iterator(); iter.hasNext();) {
+            String name = iter.next();
+            String[] values = requestParams.get(name);
+            String valueStr = &quot;&quot;;
+            for (int i = 0; i &lt; values.length; i++) {
+                valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + &quot;,&quot;;
+            }
+            # 乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
+            # valueStr = new String(valueStr.getBytes(&quot;ISO-8859-1&quot;), &quot;gbk&quot;);
+            params.put(name, valueStr);
+        }
+        String out_trade_no = request.getParameter(&quot;out_trade_no&quot;);            # 商户订单号
+        String tradeStatus = request.getParameter(&quot;trade_status&quot;);            #交易状态
+        String totalAmount = request.getParameter(&quot;total_amount&quot;);            #交易状态
+        String payDate = request.getParameter(&quot;gmt_payment&quot;);            #交易状态
+        # 签名验证(对支付宝返回的数据验证，确定是支付宝返回的)
+        boolean signVerified = false;
+        try {
+            # 调用SDK验证签名
+            signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.CHARSET, AlipayConfig.sign_type);
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+        }
+        #对验签进行处理
+        if (signVerified) {     #验签通过
+            if(tradeStatus.equals(&quot;TRADE_SUCCESS&quot;)) {
+                orderService.setOrderstate(out_trade_no,&quot;已支付&quot;);
+                return &quot;success&quot;;
+            }
+        } else {                #验签不通过
+            return &quot;failure&quot;;
+        }
+        return &quot;failure&quot;;
+        #一定要返回点什么，不能返回空值，否则支付宝无法判断
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="react-native">
+<h2>react-native引入支付宝<a class="headerlink" href="#react-native" title="Permalink to this headline">¶</a></h2>
+<p>我使用的是RN社区的
+<a class="reference external" href="https://gitee.com/oof/react-native-yunpeng-alipay">react-native-yunpeng-alipay</a></p>
+<div class="section" id="id2">
+<h3>1.首先项目引入<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt>RN version &gt;= 0.6:</dt><dd><p><strong>yarn add react-native-yunpeng-alipay</strong></p>
+</dd>
+<dt>RN version &lt; 0.6:</dt><dd><p><strong>npm install react-native-yunpeng-alipay –save</strong></p>
+<p><strong>react-native link react-native-yunpeng-alipay</strong></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h3>2.因版本更迭，可能产生的问题如下<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>首先在node_modules中找到react-native-yunpeng-alipay文件夹</p>
+<img alt="_images/yunpeng-alipay2.png" src="_images/yunpeng-alipay2.png" />
+<div class="section" id="build-gradle">
+<h4>build.gradle内<a class="headerlink" href="#build-gradle" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">android</span> <span class="p">{</span>
+    <span class="n">compileSdkVersion</span> <span class="mi">28</span>            <span class="c1">#编译SDK版本改为28</span>
+    <span class="n">buildToolsVersion</span> <span class="s2">&quot;28.0.3&quot;</span>      <span class="c1">#改为28.0.3</span>
+
+    <span class="n">defaultConfig</span> <span class="p">{</span>
+        <span class="n">minSdkVersion</span> <span class="mi">16</span>
+        <span class="n">targetSdkVersion</span> <span class="mi">28</span>         <span class="c1">#目标SDK版本改为28</span>
+        <span class="n">versionCode</span> <span class="mi">1</span>
+        <span class="n">versionName</span> <span class="s2">&quot;1.0&quot;</span>
+    <span class="p">}</span>
+    <span class="n">lintOptions</span> <span class="p">{</span>
+        <span class="n">abortOnError</span> <span class="n">false</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">repositories</span> <span class="p">{</span>
+    <span class="n">mavenCentral</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">#若为过时的compile，则改为implementation</span>
+<span class="n">dependencies</span> <span class="p">{</span>
+    <span class="n">implementation</span> <span class="s2">&quot;com.facebook.react:react-native:+&quot;</span>
+    <span class="n">implementation</span> <span class="n">fileTree</span><span class="p">(</span><span class="nb">dir</span><span class="p">:</span> <span class="s2">&quot;libs&quot;</span><span class="p">,</span> <span class="n">include</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;*.jar&quot;</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="alipaypackage-java">
+<h4>alipaypackage.java内<a class="headerlink" href="#alipaypackage-java" title="Permalink to this headline">¶</a></h4>
+<p>将createJSmodule注释掉</p>
+<img alt="_images/yunpeng-alipay.png" src="_images/yunpeng-alipay.png" />
+</div>
+</div>
+<div class="section" id="id4">
+<h3>3.在页面中使用<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">Alipay</span> <span class="kn">from</span> <span class="s1">&#39;react-native-yunpeng-alipay&#39;</span><span class="p">;</span>
+
+<span class="k">async</span> <span class="n">pay</span><span class="p">(){</span>
+    <span class="n">const</span> <span class="n">userid</span><span class="o">=</span><span class="k">await</span> <span class="n">AsyncStorage</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="s1">&#39;@userid&#39;</span><span class="p">)</span>
+    <span class="n">const</span> <span class="n">money</span><span class="o">=</span><span class="s2">&quot;111&quot;</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">cnt</span><span class="o">=</span><span class="s2">&quot;111&quot;</span><span class="p">;</span>
+    <span class="n">const</span> <span class="n">body</span><span class="o">=</span><span class="s2">&quot;余额充值&quot;</span>
+    <span class="n">const</span> <span class="n">subject</span><span class="o">=</span><span class="s2">&quot;智能计数&quot;</span><span class="o">+</span><span class="n">cnt</span><span class="o">+</span><span class="s2">&quot;次&quot;</span><span class="o">+</span><span class="s2">&quot; 合计&quot;</span><span class="o">+</span><span class="n">money</span><span class="o">+</span><span class="s2">&quot;元&quot;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">userid</span><span class="o">!=</span><span class="n">null</span><span class="p">){</span>
+        <span class="n">fetch</span><span class="p">(</span><span class="n">server</span><span class="o">+</span><span class="s2">&quot;gotopay?userID=&quot;</span><span class="o">+</span><span class="n">userid</span><span class="o">+</span><span class="s2">&quot;&amp;money=&quot;</span><span class="o">+</span><span class="n">money</span><span class="o">+</span><span class="s2">&quot;&amp;body=&quot;</span><span class="o">+</span><span class="n">body</span><span class="o">+</span><span class="s2">&quot;&amp;subject=&quot;</span><span class="o">+</span><span class="n">subject</span><span class="p">,</span> <span class="p">{</span>
+            <span class="n">method</span><span class="p">:</span> <span class="s1">&#39;POST&#39;</span>
+        <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">resp</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+            <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">();</span>
+        <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">resptxt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="n">Alipay</span><span class="o">.</span><span class="n">pay</span><span class="p">(</span><span class="n">resptxt</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">data</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;支付成功&quot;</span><span class="p">,</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+
+                <span class="c1">#支付成功后的逻辑</span>
+            <span class="p">}</span>
+            <span class="p">,</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;支付失败&quot;</span><span class="p">,</span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
+            <span class="p">})</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

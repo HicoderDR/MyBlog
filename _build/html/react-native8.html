@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>react-native进阶:秒嘀云+Nativebase实现短信验证码登陆 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="react-native实战:轮播引导和登陆注册" href="react-native7.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-post.html">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ablog.html">我如何创建自己的博客</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native4.html">react-native初识: state 和 props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native5.html">react-native初识:布局和CSS样式、第三方库的引入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native6.html">react-native初识：我使用的组件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native7.html">react-native实战:轮播引导和登陆注册</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">秒嘀云平台的使用和服务端的配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nativebase">Nativebase写前端并调用验证码接口</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">界面实现</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">逻辑实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/react-native8.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native-nativebase">
+<h1>react-native进阶:秒嘀云+Nativebase实现短信验证码登陆<a class="headerlink" href="#react-native-nativebase" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>秒嘀云平台的使用和服务端的配置<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>首先要使用短信验证码服务，你需要通过企业认证（法人和执照），
+否则只能老老实实写个账密登陆自high.</p>
+<p><a class="reference external" href="http://www.miaodiyun.com/">秒嘀云官网</a></p>
+<dl class="simple">
+<dt>第一步:</dt><dd><p>注册并登陆，且通过如下的企业认证(审核仅需十分钟不到)</p>
+</dd>
+</dl>
+<img alt="_images/mdyrz.png" src="_images/mdyrz.png" />
+<dl class="simple">
+<dt>第二步：</dt><dd><p>找到短信配置页面，里面有必要的信息，并在IP栏把你服务器的公网IP加上
+，然后下载Demo，Demo有Java和Python两个版本，以下我使用Java后台。</p>
+</dd>
+</dl>
+<img alt="_images/dxpz.png" src="_images/dxpz.png" />
+<dl class="simple">
+<dt>第三步：</dt><dd><p>找到模板管理页面，创建自己的模板，我的模板中只有一个变量{1},
+创建完后会看到自己的模板ID，记住即可</p>
+</dd>
+</dl>
+<img alt="_images/mdymb.png" src="_images/mdymb.png" />
+<dl class="simple">
+<dt>第四步:</dt><dd><p>打开Demo，发现只有三个文件，一个Test，一个Config，一个httpUtil，
+首先将Config复制到自己的项目里，里面的信息换成自己的，
+然后将httpUtil原样复制到项目里</p>
+</dd>
+</dl>
+<img alt="_images/mdyconfig.png" src="_images/mdyconfig.png" />
+<p>最后，我们看一下Test里面的内容</p>
+<img alt="_images/mdytest.png" src="_images/mdytest.png" />
+<p>简单易懂，to即发送至的手机号，param即模板中的变量，templateid即模板ID</p>
+<dl class="simple">
+<dt>第五步：</dt><dd><p>现在开始写自己的后台,首先申明一个接口(我使用的是restful API,这不重要,大家只要关注核心代码即可)</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s2">&quot;/api/user/postsms&quot;</span><span class="p">)</span>
+<span class="n">public</span> <span class="n">String</span> <span class="n">postsms</span><span class="p">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">phone</span><span class="p">){</span>
+    <span class="k">try</span><span class="p">{</span>
+        <span class="c1">#生成一个六位随机数验证码</span>
+        <span class="n">String</span> <span class="n">Code</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">valueOf</span><span class="p">(</span><span class="n">new</span> <span class="n">Random</span><span class="p">()</span><span class="o">.</span><span class="n">nextInt</span><span class="p">(</span><span class="mi">899999</span><span class="p">)</span> <span class="o">+</span> <span class="mi">100000</span><span class="p">);</span>
+        <span class="c1">#下面照抄Demo</span>
+        <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="n">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+        <span class="n">sb</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;accountSid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MdyConfig</span><span class="o">.</span><span class="n">ACCOUNT_SID</span><span class="p">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&amp;to&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">phone</span><span class="p">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&amp;templateid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;236029&quot;</span><span class="p">);</span>
+        <span class="c1">#模板中的变量，如果有多个，用逗号分隔</span>
+        <span class="n">sb</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&amp;param&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Code</span><span class="p">);</span>
+        <span class="n">String</span> <span class="n">body</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span> <span class="o">+</span> <span class="n">HttpUtil</span><span class="o">.</span><span class="n">createCommonParam</span><span class="p">(</span><span class="n">MdyConfig</span><span class="o">.</span><span class="n">ACCOUNT_SID</span><span class="p">,</span> <span class="n">MdyConfig</span><span class="o">.</span><span class="n">AUTH_TOKEN</span><span class="p">);</span>
+        <span class="c1">#请求的结果可以返回或处理，这里我不多写</span>
+        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">HttpUtil</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">MdyConfig</span><span class="o">.</span><span class="n">BASE_URL</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+        <span class="c1">#返回发送的验证码给前端</span>
+        <span class="k">return</span> <span class="n">Code</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">catch</span> <span class="p">(</span><span class="ne">Exception</span>  <span class="n">e</span><span class="p">){</span>
+        <span class="k">return</span> <span class="s2">&quot;发送验证码失败&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>至此秒嘀云服务就成功接入了</p>
+</div>
+<div class="section" id="nativebase">
+<h2>Nativebase写前端并调用验证码接口<a class="headerlink" href="#nativebase" title="Permalink to this headline">¶</a></h2>
+<p>为了方便理解，我还是将代码拆分成界面实现和逻辑两个部分</p>
+<p>本部分的实现会涉及
+<a class="reference external" href="https://docs.nativebase.io/">NativeBase</a>
+和
+<a class="reference external" href="https://reactnavigation.org/docs/en/getting-started.html">React navigation</a>
+，必须有基本了解。</p>
+<div class="section" id="id4">
+<h3>界面实现<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>首先看验证码登陆界面</p>
+<img alt="_images/smslogin.png" src="_images/smslogin.png" />
+<p>内部结构是 两个Input输入框，一个验证码button，一个登陆button</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React, { Component } from &#39;react&#39;
+import {View,ImageBackground,Dimensions} from &quot;react-native&quot;
+import {
+    Text,Header,Container,
+    Content, Form, Item,
+    Input, Label, Left,
+    Body, Right,Title,
+    Icon,Button,Toast,
+    Row,Col,Grid,
+} from &quot;native-base&quot;;
+#引入倒计时文本
+import CountDownText from &quot;./CountDownText&quot;
+
+
+const screenW = Dimensions.get(&#39;window&#39;).width;
+const screenH = Dimensions.get(&#39;window&#39;).height;
+
+export default class MSLogin extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            phone:&quot;&quot;,           #两个输入框的内容
+            smscode:&quot;&quot;,
+            getting:false,      #发送验证码
+            phonelock:false,    #使手机号输入框不可更改
+            correct:&quot;&quot;,         #存储服务器返回的正确验证码
+        }
+    }
+    static navigationOptions = {
+        header:null,
+    }
+    render(){
+        return(
+            &lt;Container&gt;
+            #设置背景图
+            &lt;ImageBackground
+                style={{ width:screenW,height:screenH }}
+                source={require(&quot;./android/app/src/main/res/mipmap-xxxhdpi/newback.png&quot;)}
+            &gt;
+            &lt;View style={{flex:5}}&gt;
+
+                # 使用沉浸式Header头，融入背景
+                &lt;Header transparent style={{marginTop:10}}&gt;
+                    &lt;Left&gt;
+                        &lt;Button transparent
+                            onPress={()=&gt;{this.props.navigation.replace(&quot;Login&quot;);}}
+                        &gt;
+                            &lt;Icon name=&#39;arrow-back&#39; style={{color:&quot;white&quot;}} /&gt;
+                        &lt;/Button&gt;
+                    &lt;/Left&gt;
+                    &lt;Body&gt;
+                        &lt;Title&gt;短信验证登陆&lt;/Title&gt;
+                    &lt;/Body&gt;
+                    &lt;Right&gt;&lt;/Right&gt;
+                &lt;/Header&gt;
+
+                &lt;Form style={{margin:15,marginTop:screenH/20}}&gt;
+
+                    &lt;Item rounded style={{margin:5}}&gt;
+                        &lt;Icon active  type=&quot;AntDesign&quot; name=&quot;mobile1&quot; style={{color:&quot;white&quot;}}/&gt;
+
+                        #手机号输入框
+                        &lt;Input
+                            style={{color:&quot;white&quot;}}          #输入字样式
+                            placeholder=&#39;请输入您的手机号&#39;    #提示字
+                            placeholderTextColor=&quot;white&quot;     #提示字样式
+                            autoFocus={true}                 #进入页面后自动获取焦点
+                            blurOnSubmit={true}              #按下键盘 确定/提交 键后失焦
+                            keyboardType=&quot;numeric&quot;           #调用手机纯数字键盘
+                            maxLength={11}                   #最大长度---手机号11位
+                            editable={!this.state.phonelock} #发送验证码后将手机号一栏锁定
+                            value={this.state.phone}
+                            onChangeText={(txt)=&gt;{
+                                this.setState({phone:txt})
+                            }}
+                        /&gt;
+                    &lt;/Item&gt;
+
+                    &lt;Item rounded style={{margin:5}}&gt;
+                        &lt;Icon active  type=&quot;MaterialIcons&quot; name=&quot;sms&quot; style={{color:&quot;white&quot;}}/&gt;
+
+                        #验证码输入框
+                        &lt;Input placeholder=&#39;请输入短信验证码&#39;
+                            placeholderTextColor=&quot;white&quot;
+                            style={{color:&quot;white&quot;}}
+                            keyboardType=&quot;numeric&quot;
+                            maxLength={6}
+                            value={this.state.smscode}
+                            onChangeText={(txt)=&gt;{
+                                this.setState({smscode:txt})
+                            }}
+                        /&gt;
+
+                        #使用三目运算符 ？： 发送后变为倒计时文本
+                        {this.state.getting ?
+
+                        #申明按钮为 disabled
+                        &lt;Button disabled rounded small light style={{opacity:0.6,marginRight:5}}&gt;
+                            &lt;CountDownText                                          # 倒计时
+                                style={{color:&quot;#3498DB&quot;}}
+                                countType=&#39;seconds&#39;                                 # 计时类型：seconds / date
+                                auto={true}                                         # 自动开始
+                                afterEnd={() =&gt; {this.setState({getting:false})}}   # 结束回调
+                                timeLeft={60}                                       # 时间起点
+                                step={-1}                                           # 计时步长，以秒为单位
+                                startText=&#39;获取验证码&#39;                               # 开始的文本
+                                endText=&#39;获取验证码&#39;                                 # 结束的文本
+                                intervalText={(sec) =&gt; sec + &#39;秒重新获取&#39;}           # 定时的文本回调
+                            /&gt;
+                        &lt;/Button&gt;
+
+                        :
+
+                        #触发发送验证码的按钮
+                        &lt;Button rounded small light
+                            style={{opacity:0.6,marginRight:5}}
+                            onPress={()=&gt;{
+                                this.sendsms()
+                            }}
+                        &gt;
+                            &lt;Text style={{color:&quot;#3498DB&quot;}}&gt;获取验证码&lt;/Text&gt;
+                        &lt;/Button&gt;
+                        }
+                    &lt;/Item&gt;
+                &lt;/Form&gt;
+
+                #登陆按钮
+                &lt;Button  block light style={{marginTop:30,marginRight:15,marginLeft:15,opacity:0.7}}
+                    onPress={this.login}
+                &gt;
+                    &lt;Text style={{fontSize:18,color:&quot;#3498DB&quot;}}&gt;登 录&lt;/Text&gt;
+                &lt;/Button&gt;
+
+            &lt;/View&gt;
+            &lt;View style={{flex:2}}&gt;&lt;/View&gt;
+            &lt;/ImageBackground&gt;
+            &lt;/Container&gt;
+        );
+    }
+}
+</pre></div>
+</div>
+<p>CountDownText我是借鉴的别人的代码，挂出
+<a class="reference external" href="https://github.com/jsonz1993/wheel/tree/master/react-native-countdown">github地址</a>
+，我将他的两个js文件复制到项目中，并注释掉此处代码，
+使得他不会因为setstate而不停地回退刷新时间</p>
+<img alt="_images/countdowntext.png" src="_images/countdowntext.png" />
+</div>
+<div class="section" id="id5">
+<h3>逻辑实现<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#LoadingView有多种实现方式，我的实现方式也会写在下方</span>
+<span class="kn">import</span> <span class="nn">MyLoadingUtil</span> <span class="kn">from</span> <span class="s2">&quot;./myclass/MyLoadingUtil&quot;</span>
+<span class="kn">import</span> <span class="nn">AsyncStorage</span> <span class="kn">from</span> <span class="s1">&#39;@react-native-community/async-storage&#39;</span>
+
+<span class="c1">#服务器地址</span>
+<span class="n">const</span> <span class="n">server</span><span class="o">=</span><span class="s2">&quot;http://xx.xx.xx.xx:port/&quot;</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">MSLogin</span> <span class="n">extends</span> <span class="n">Component</span><span class="p">{</span>
+
+    <span class="c1">#发送验证码</span>
+    <span class="n">sendsms</span><span class="p">(){</span>
+        <span class="c1">#获取当前值</span>
+        <span class="n">const</span> <span class="n">phone</span><span class="o">=</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">phone</span><span class="p">;</span>
+        <span class="c1">#判断输入合法</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">phone</span><span class="o">.</span><span class="n">length</span><span class="o">===</span><span class="mi">11</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">#发送http请求</span>
+            <span class="n">fetch</span><span class="p">(</span><span class="n">server</span><span class="o">+</span><span class="s1">&#39;api/user/postsms?phone=&#39;</span><span class="o">+</span><span class="n">phone</span><span class="p">,</span> <span class="p">{</span>
+                <span class="n">method</span><span class="p">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+            <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">response</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+                <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">();</span>
+            <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">response</span><span class="p">)</span> <span class="o">=&gt;</span><span class="p">{</span>
+                <span class="c1">#由于我的后台直接返回验证码字符串</span>
+                <span class="c1">#所以只需.text()后，即可将其保存在correct中</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">setState</span><span class="p">({</span>
+                    <span class="n">correct</span><span class="p">:</span><span class="n">response</span><span class="p">,</span>
+                    <span class="n">getting</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
+                    <span class="n">phonelock</span><span class="p">:</span><span class="n">true</span>
+                <span class="p">})</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;验证码已发送&quot;</span><span class="p">,</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+            <span class="p">})</span><span class="o">.</span><span class="n">catch</span><span class="p">(</span><span class="n">e</span><span class="o">=&gt;</span><span class="p">{</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;服务器无响应&quot;</span><span class="p">,</span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;请检查您的输入&quot;</span><span class="p">,</span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">#登陆 (可以看到两种不同写法，注意在onpress调用的时候写法也不同)</span>
+    <span class="n">login</span><span class="o">=</span><span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="n">const</span> <span class="n">phone</span><span class="o">=</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">phone</span><span class="p">;</span>
+        <span class="n">const</span> <span class="n">smscode</span><span class="o">=</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">smscode</span><span class="p">;</span>
+        <span class="c1">#判断是否正确</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">phone</span><span class="o">.</span><span class="n">length</span><span class="o">===</span><span class="mi">11</span> <span class="o">&amp;&amp;</span> <span class="n">smscode</span><span class="o">===</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">correct</span> <span class="o">&amp;&amp;</span><span class="n">smscode</span><span class="o">.</span><span class="n">length</span><span class="o">==</span><span class="mi">6</span><span class="p">){</span>
+            <span class="c1">#此时已经可以判断成功登陆，进行跳转，不做以下步骤</span>
+
+            <span class="c1">#获取用户信息并将其保存，以便自动登陆</span>
+            <span class="n">MyLoadingUtil</span><span class="o">.</span><span class="n">showLoading</span><span class="p">();</span>
+            <span class="n">fetch</span><span class="p">(</span><span class="n">server</span><span class="o">+</span><span class="s1">&#39;api/user/getuserinfo?username=&#39;</span><span class="o">+</span><span class="n">phone</span><span class="p">,</span> <span class="p">{</span>
+                <span class="n">method</span><span class="p">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+            <span class="p">})</span>
+            <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+            <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">Json</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">storeData</span><span class="p">(</span><span class="n">Json</span><span class="p">);</span>
+                <span class="n">MyLoadingUtil</span><span class="o">.</span><span class="n">dismissLoading</span><span class="p">();</span>
+            <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;欢迎使用！&quot;</span><span class="p">,</span><span class="s2">&quot;success&quot;</span><span class="p">);</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Main&quot;</span><span class="p">);</span>
+            <span class="p">})</span><span class="o">.</span><span class="n">catch</span><span class="p">((</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;网络连接失败&quot;</span><span class="p">,</span><span class="s2">&quot;warning&quot;</span><span class="p">);</span>
+                <span class="n">MyLoadingUtil</span><span class="o">.</span><span class="n">dismissLoading</span><span class="p">();</span>
+            <span class="p">});</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;请检查您的输入&quot;</span><span class="p">,</span><span class="s2">&quot;warning&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">render</span><span class="p">(){</span>
+        <span class="c1">#..................</span>
+    <span class="p">}</span>
+    <span class="c1">#重写showtoast方法</span>
+    <span class="n">showtoast</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="nb">type</span><span class="p">){</span>
+        <span class="n">Toast</span><span class="o">.</span><span class="n">show</span><span class="p">({</span>
+            <span class="n">text</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+            <span class="n">buttonText</span><span class="p">:</span> <span class="s2">&quot;好的&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="p">:</span> <span class="nb">type</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+    <span class="c1">#本地存储</span>
+    <span class="n">storeData</span> <span class="o">=</span> <span class="k">async</span><span class="p">(</span><span class="n">Json</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">const</span> <span class="n">first</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;@username&quot;</span><span class="p">,</span> <span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">userName</span><span class="p">]</span>
+        <span class="n">const</span> <span class="n">second</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;@password&quot;</span><span class="p">,</span> <span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">password</span><span class="p">]</span>
+        <span class="n">const</span> <span class="n">third</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;@userid&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="o">+</span><span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">userID</span><span class="p">]</span>
+        <span class="k">try</span> <span class="p">{</span>
+        <span class="k">await</span> <span class="n">AsyncStorage</span><span class="o">.</span><span class="n">multiSet</span><span class="p">([</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="n">catch</span><span class="p">(</span><span class="n">e</span><span class="p">){}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://www.jianshu.com/p/89aed8ec4cc2">我的LoadingView实现方法来源</a></p>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="react-native7.html" class="btn btn-neutral float-left" title="react-native实战:轮播引导和登陆注册" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
