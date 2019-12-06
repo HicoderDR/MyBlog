@@ -36,6 +36,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="react-native进阶:秒嘀云+Nativebase实现短信验证码登陆" href="react-native8.html" />
    
   
   <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="HicoDR Blog">
@@ -95,7 +96,7 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="about.html">关于 HicoDR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="first-post.html">博客更新计划</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ablog.html">我如何创建自己的博客</a></li>
@@ -107,6 +108,27 @@
 <li class="toctree-l1"><a class="reference internal" href="react-native6.html">react-native初识：我使用的组件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="react-native7.html">react-native实战:轮播引导和登陆注册</a></li>
 <li class="toctree-l1"><a class="reference internal" href="react-native8.html">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">react-native实战:支付宝接入app支付</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">支付宝开放平台配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#springboot">springboot后台配置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mavensdk">1.首先在maven中引入SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alipayconfig-token">2.然后新建一个AlipayConfig类，存储私密的token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pay">3.完成pay请求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notify">4.完成notify请求(可选，出于支付安全考虑，需要验签和对应处理)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#react-native">react-native引入支付宝</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.首先项目引入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.因版本更迭，可能产生的问题如下</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build-gradle">build.gradle内</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#alipaypackage-java">alipaypackage.java内</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.在页面中使用</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -399,6 +421,13 @@ public String notify(HttpServletRequest request, HttpServletResponse response) {
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="react-native8.html" class="btn btn-neutral float-left" title="react-native进阶:秒嘀云+Nativebase实现短信验证码登陆" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

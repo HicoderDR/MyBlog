@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Springboot初识:了解Spring &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="react-native扩展:IOS踩坑纪录" href="react-native10.html" />
+    <link rel="prev" title="react-native实战:支付宝接入app支付" href="react-native9.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-post.html">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ablog.html">我如何创建自己的博客</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native4.html">react-native初识: state 和 props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native5.html">react-native初识:布局和CSS样式、第三方库的引入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native6.html">react-native初识：我使用的组件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native7.html">react-native实战:轮播引导和登陆注册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native8.html">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native9.html">react-native实战:支付宝接入app支付</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Springboot初识:了解Spring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Spring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#springboot">SpringBoot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="react-native10.html">react-native扩展:IOS踩坑纪录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Springboot初识:了解Spring</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/springboot1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="springboot-spring">
+<h1>Springboot初识:了解Spring<a class="headerlink" href="#springboot-spring" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://spring.io/">spring官网地址</a></p>
+<p>创建团队：Pivotal</p>
+<div class="section" id="id1">
+<h2>Spring<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Spring的思想:</dt><dd><p>Spring框架为开发提供了一系列的解决方案，比如利用控制反转的核心特性，
+并通过
+<strong>依赖注入</strong>
+实现控制反转来实现管理对象生命周期容器化，利用面向切面编程进行声明式的事务管理，
+整合多种持久化技术管理数据访问，提供大量优秀的Web框架方便开发等等。
+Spring框架具有控制反转（IOC）特性，IOC旨在方便项目维护和测试，
+它提供了一种通过Java的反射机制对Java对象进行统一的配置和管理的方法。
+Spring框架利用容器管理对象的生命周期，容器可以通过扫描XML文件或类上特定Java注解来配置对象，
+开发者可以通过依赖查找或依赖注入来获得对象。</p>
+</dd>
+<dt>Spring框架：</dt><dd><ul class="simple">
+<li><p>框架是指 <strong>能完成一定功能的半成品</strong></p></li>
+<li><p>Spring 全称 <strong>Spring Framework</strong> ，包含了 <strong>Springboot（脚手架）</strong> ，<strong>SpringMVC（基于MVC设计的web框架）</strong> ，<strong>Spring Cloud（构建云服务的框架）</strong> ，<strong>Spring Security（安全访问控制）</strong> 等等……</p></li>
+</ul>
+</dd>
+<dt>Spring的特点:</dt><dd><ol class="arabic simple">
+<li><p>可以创建独立的Spring应用程序，并且基于其Maven或Gradle插件，可以创建可执行的JARs和WARs</p></li>
+<li><p>内嵌Tomcat或Jetty等Servlet容器</p></li>
+<li><p>提供自动配置的“starter”项目对象模型（POMS）以简化Maven配置</p></li>
+<li><p>尽可能自动配置Spring容器</p></li>
+<li><p>提供准备好的特性，如指标、健康检查和外部化配置</p></li>
+<li><p>绝对没有代码生成，不需要XML配置</p></li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="section" id="springboot">
+<h2>SpringBoot<a class="headerlink" href="#springboot" title="Permalink to this headline">¶</a></h2>
+<p>SpringBoot仅仅是一个脚手架，能帮助你快速地构建和部署项目，并不限制模型和设计模式的使用。</p>
+<p>使用Spring Boot构建的项目，都可以称为使用了springboot框架</p>
+<dl class="simple">
+<dt>Springboot应用支持:</dt><dd><ul class="simple">
+<li><p>前端常使用模板引擎，主要有FreeMarker和Thymeleaf，它们都是用Java语言编写的，渲染模板并输出相应文本，使得界面的设计与应用的逻辑分离，同时前端开发还会使用到Bootstrap、AngularJS、JQuery等</p></li>
+<li><p>在浏览器的数据传输格式上采用 <strong>Json</strong> ，非xml，同时提供 <strong>RESTful API</strong></p></li>
+<li><p>SpringMVC框架用于数据到达服务器后处理请求</p></li>
+<li><p>到数据访问层主要有Hibernate、MyBatis、JPA等持久层框架</p></li>
+<li><p>数据库常用 <strong>MySQL</strong></p></li>
+<li><p>开发工具推荐 <a class="reference external" href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a></p></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="react-native10.html" class="btn btn-neutral float-right" title="react-native扩展:IOS踩坑纪录" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="react-native9.html" class="btn btn-neutral float-left" title="react-native实战:支付宝接入app支付" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
