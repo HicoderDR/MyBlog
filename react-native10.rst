@@ -1,4 +1,4 @@
-.. post::Oct 24,2019
+.. post::Dec 6,2019
     :tags:react-native
     :category:react-native
     :author:HicoderDR
@@ -14,6 +14,9 @@ Apple公司
 ，应用打包
 **必须先申请IOS开发者资质（99美刀/年）**
 ，否则就只能在虚拟机上望梅止渴。
+
+关于申请Apple开发者资质，我整理了一份流程，
+`通过链接下载 <http://47.100.107.158/file/apple.pdf>`_
 
 申明，我是个windows+android用户，没有Mac也没有iphone(而这些都是开发IOS的必要条件)。
 
@@ -132,7 +135,7 @@ RN的要求是Xcode 10及以上，我下载了Xcode 10.1，追悔莫及。
 
 思路是一个个装，装到哪个出了问题就肯定是哪个了
 
-血与泪的纪录，找出三个害人精
+血与泪的纪录，找出四个害人精
 ::
 
     yarn add native-base

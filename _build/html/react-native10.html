@@ -36,7 +36,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Springboot初识:了解Spring" href="springboot1.html" />
+    <link rel="next" title="Springboot初识:了解Spring" href="springboot1.html" />
+    <link rel="prev" title="react-native实战:支付宝接入app支付" href="react-native9.html" />
    
   
   <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="HicoDR Blog">
@@ -109,18 +110,17 @@
 <li class="toctree-l1"><a class="reference internal" href="react-native7.html">react-native实战:轮播引导和登陆注册</a></li>
 <li class="toctree-l1"><a class="reference internal" href="react-native8.html">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a></li>
 <li class="toctree-l1"><a class="reference internal" href="react-native9.html">react-native实战:支付宝接入app支付</a></li>
-<li class="toctree-l1"><a class="reference internal" href="springboot1.html">Springboot初识:了解Spring</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">react-native扩展:IOS踩坑纪录</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#mac">MAC虚拟机配置流程</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">黑苹果镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">黑苹果镜像</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#vmwareunlocker">VMware使用unlocker破解</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">安装MAC虚拟机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">安装MAC虚拟机</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mac-terminal-proxy">MAC terminal proxy 代理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#react-native">配置react-native运行环境</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rnmac">将RN项目移植到MAC环境下运行</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">第三方模块的逐个重新安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">第三方模块的逐个重新安装</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#react-native-vector-icons">react-native-vector-icons 图标库</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#react-native-image-crop-picker">react-native-image-crop-picker 相机相册</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#react-native-yunpeng-alipay">react-native-yunpeng-alipay 支付宝支付</a></li>
@@ -132,6 +132,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="springboot1.html">Springboot初识:了解Spring</a></li>
 </ul>
 
             
@@ -206,12 +207,14 @@
 ，应用打包
 <strong>必须先申请IOS开发者资质（99美刀/年）</strong>
 ，否则就只能在虚拟机上望梅止渴。</p>
+<p>关于申请Apple开发者资质，我整理了一份流程，
+<a class="reference external" href="http://47.100.107.158/file/apple.pdf">通过链接下载</a></p>
 <p>申明，我是个windows+android用户，没有Mac也没有iphone(而这些都是开发IOS的必要条件)。</p>
 <p>但是没有办法，需要编译IOS版本，只能硬着头皮上了。</p>
 <div class="section" id="mac">
 <h2>MAC虚拟机配置流程<a class="headerlink" href="#mac" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
-<h3>黑苹果镜像<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>黑苹果镜像<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>为了省下租借（购买）MAC电脑的钱,一定要交社费进入万恶的
 <a class="reference external" href="https://osx.cx/">黑苹果社区</a></p>
 <p>我在这里获取了MacOS mojave 10.14的黑苹果镜像（当然，在此你就可以选择另一条道路——安装双系统而非虚拟机）</p>
@@ -228,8 +231,8 @@
 <p>通过unlocker，VMware创建虚拟机中的Mac选项被解锁。</p>
 <p>什么？你VMware没激活？这种问题你好意思问吗？</p>
 </div>
-<div class="section" id="id3">
-<h3>安装MAC虚拟机<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>安装MAC虚拟机<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>准备好Apple账号</p>
 <p>按照
 <a class="reference external" href="https://www.52pojie.cn/thread-804000-1-1.html">VM安装MAC教程</a>
@@ -301,11 +304,11 @@
 <p>红屏镇楼</p>
 <img alt="_images/redscreen.png" src="_images/redscreen.png" />
 <p>因为不知道到底是哪个第三方模块出了问题，只好逐个排查</p>
-<div class="section" id="id5">
-<h3>第三方模块的逐个重新安装<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>第三方模块的逐个重新安装<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>首先</p>
 <p>思路是一个个装，装到哪个出了问题就肯定是哪个了</p>
-<p>血与泪的纪录，找出三个害人精</p>
+<p>血与泪的纪录，找出四个害人精</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">add</span> <span class="n">native</span><span class="o">-</span><span class="n">base</span>
 <span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">navigation</span>
 <span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">gesture</span><span class="o">-</span><span class="n">handler</span>
@@ -395,8 +398,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="springboot1.html" class="btn btn-neutral float-right" title="Springboot初识:了解Spring" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="springboot1.html" class="btn btn-neutral float-left" title="Springboot初识:了解Spring" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="react-native9.html" class="btn btn-neutral float-left" title="react-native实战:支付宝接入app支付" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
