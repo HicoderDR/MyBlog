@@ -274,4 +274,4 @@ requests获取网页源码
 完整代码下载
 **********************
 挂在我可怜的学生服务器上了，
-`点这里就行 <http://47.100.107.158/file/family.py>`_
+`点这里就行 <http://47.100.107.158/file/familymart_fetch_goodtype.py>`_
