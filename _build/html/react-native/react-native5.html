@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>react-native初识:布局和CSS样式、第三方库的引入 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="react-native初识：我使用的组件" href="react-native6.html" />
+    <link rel="prev" title="react-native初识: state 和 props" href="react-native4.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="../blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-post.html">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ablog.html">我如何创建自己的博客</a></li>
+</ul>
+<p class="caption"><span class="caption-text">react-native</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native4.html">react-native初识: state 和 props</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">react-native初识:布局和CSS样式、第三方库的引入</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#view-style">如何对一个视图（View）设置style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#layout">Layout（布局）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1. FlexBox布局</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2. react-native-easy-grid</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">如何引入第三方库</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-ways">通用的自动添加依赖方法（Automatic Ways）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manual-ways">手动方法(Manual Ways)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="react-native6.html">react-native初识：我使用的组件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native7.html">react-native实战:轮播引导和登陆注册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native8.html">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native9.html">react-native实战:支付宝接入app支付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native10.html">react-native扩展:IOS踩坑纪录</a></li>
+</ul>
+<p class="caption"><span class="caption-text">杂项</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bs4.html">bs4爬虫实战:全家Family网站攻略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pythread.html">Python多线程：Family数据批量生成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openssh.html">Paramiko：Python+ssh做快乐网管</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fiddler.html">Fiddler:借助抓包工具写手机APP的Python脚本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Web 后端</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../springboot1.html">Springboot初识:了解Spring</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>react-native初识:布局和CSS样式、第三方库的引入</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/react-native/react-native5.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native-css">
+<h1>react-native初识:布局和CSS样式、第三方库的引入<a class="headerlink" href="#react-native-css" title="Permalink to this headline">¶</a></h1>
+<p>如果没有听说过CSS</p>
+<p><a class="reference external" href="https://www.w3school.com.cn/css/index.asp">这里是W3School学习链接</a></p>
+<p><a class="reference external" href="https://www.runoob.com/css/css-tutorial.html">这里是菜鸟教程连接</a></p>
+<div class="section" id="view-style">
+<h2>如何对一个视图（View）设置style<a class="headerlink" href="#view-style" title="Permalink to this headline">¶</a></h2>
+<p>1.直接设置style</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">Component</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span>
+<span class="kn">import</span> <span class="p">{</span>
+    <span class="n">Text</span><span class="p">,</span>
+    <span class="n">View</span><span class="p">,</span>
+    <span class="n">Dimensions</span><span class="p">,</span>
+    <span class="n">StyleSheet</span><span class="p">,</span>
+<span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native&#39;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">A</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+    <span class="n">render</span><span class="p">(){</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="c1">#Tips: 第一个大括号是指里面为一个自定义变量（对象）</span>
+            <span class="c1">#      第二个大括号则指这个变量是一个多属性的结构体</span>
+            <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">flex</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="n">alignItems</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="n">flexDirection</span><span class="p">:</span> <span class="s1">&#39;row&#39;</span><span class="p">}}</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">Text</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">fontSize</span><span class="p">:</span><span class="mi">18</span><span class="p">}}</span><span class="o">&gt;</span>
+                    <span class="n">native</span> <span class="n">words</span>
+                <span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>2.内联样式表</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">Component</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span>
+<span class="kn">import</span> <span class="p">{</span>
+    <span class="n">Text</span><span class="p">,</span>
+    <span class="n">View</span><span class="p">,</span>
+    <span class="n">Dimensions</span><span class="p">,</span>
+    <span class="n">StyleSheet</span><span class="p">,</span>
+<span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native&#39;</span>
+<span class="c1">#通过引入Dimensions获取屏幕宽高</span>
+<span class="n">const</span> <span class="n">screenW</span> <span class="o">=</span> <span class="n">Dimensions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;window&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">width</span><span class="p">;</span>
+<span class="c1">#通过引入StyleSheet创建css样式表</span>
+<span class="n">const</span> <span class="n">styles</span> <span class="o">=</span> <span class="n">StyleSheet</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+    <span class="n">container</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">alignItems</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">flexDirection</span><span class="p">:</span> <span class="s1">&#39;row&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">text</span><span class="p">:{</span>
+        <span class="n">fontSize</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">A</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+    <span class="n">render</span><span class="p">(){</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">container</span><span class="p">}</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">Text</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">text</span><span class="p">}</span><span class="o">&gt;</span>
+                    <span class="n">native</span> <span class="n">words</span>
+                <span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>3.外联样式表</p>
+<p>外联即将样式表写在另一个文件中，
+使用时通过import导入</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">styles</span> <span class="kn">from</span> <span class="s2">&quot;./mystyle&quot;</span>
+</pre></div>
+</div>
+<p>如果使用外联改善代码结构，则建议
+<a class="reference external" href="http://lesscss.cn/">学习Less</a></p>
+<p>相比于CSS,
+<strong>LESS</strong>
+增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。</p>
+</div>
+<div class="section" id="layout">
+<h2>Layout（布局）<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
+<p>布局就是组件排列的方式，我们通过调整、嵌套布局来完成对</p>
+<div class="section" id="id2">
+<h3>1. <a class="reference external" href="https://reactnative.cn/docs/flexbox/">FlexBox布局</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>原生React-native采用的布局方法</p>
+<p>这里是一份手绘图解,帮助您更快的掌握Flexbox</p>
+<img alt="../_images/flexbox1.jpg" src="../_images/flexbox1.jpg" />
+<img alt="../_images/flexbox2.jpg" src="../_images/flexbox2.jpg" />
+<img alt="../_images/flexbox3.jpg" src="../_images/flexbox3.jpg" />
+<img alt="../_images/flexbox4.jpg" src="../_images/flexbox4.jpg" />
+<img alt="../_images/flexbox5.jpg" src="../_images/flexbox5.jpg" />
+</div>
+<div class="section" id="id3">
+<h3>2. <a class="reference external" href="https://github.com/GeekyAnts/react-native-easy-grid">react-native-easy-grid</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>github网址：<a class="reference external" href="https://github.com/GeekyAnts/react-native-easy-grid">https://github.com/GeekyAnts/react-native-easy-grid</a></p>
+<p>easy-grid使用方法极其简单，
+通过组合、嵌套实现复杂的布局</p>
+<p>在这里必须要吹爆
+<a class="reference external" href="https://docs.nativebase.io/">NativeBase</a>
+，这是我使用过的最赞的RN第三方UI组件库了
+，easy-grid只是nativebase中的一部分而已。</p>
+<p>简单的使用示意：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Grid</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">Col</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">Text</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">Col</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">Col</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">Row</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Text</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">Row</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">Row</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Text</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">Row</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">Col</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">Grid</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../_images/easy-grid.png" src="../_images/easy-grid.png" />
+</div>
+</div>
+<div class="section" id="id4">
+<h2>如何引入第三方库<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>在github或者RN社区上有很多好用的第三方库</p>
+<p>打开他们的github网址，
+跟随Install说明完成操作
+，就可以使用第三方库了</p>
+<div class="section" id="automatic-ways">
+<h3>通用的自动添加依赖方法（Automatic Ways）<a class="headerlink" href="#automatic-ways" title="Permalink to this headline">¶</a></h3>
+<dl>
+<dt>RN version&gt;=0.60:</dt><dd><p>yarn add xxx</p>
+</dd>
+<dt>RN version&lt;0.60:</dt><dd><p>npm install xxx</p>
+<p>react-native link xxx</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="manual-ways">
+<h3>手动方法(Manual Ways)<a class="headerlink" href="#manual-ways" title="Permalink to this headline">¶</a></h3>
+<p>阅读具体的Install说明</p>
+<dl class="simple">
+<dt>一般会涉及的文件:</dt><dd><p>/andriod/app/build.gradle
+/android/app/…/MainApplication</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="react-native6.html" class="btn btn-neutral float-right" title="react-native初识：我使用的组件" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="react-native4.html" class="btn btn-neutral float-left" title="react-native初识: state 和 props" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

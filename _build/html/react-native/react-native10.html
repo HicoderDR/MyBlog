@@ -1,0 +1,456 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>react-native扩展:IOS踩坑纪录 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="bs4爬虫实战:全家Family网站攻略" href="../bs4.html" />
+    <link rel="prev" title="react-native实战:支付宝接入app支付" href="react-native9.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="../blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-post.html">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ablog.html">我如何创建自己的博客</a></li>
+</ul>
+<p class="caption"><span class="caption-text">react-native</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native4.html">react-native初识: state 和 props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native5.html">react-native初识:布局和CSS样式、第三方库的引入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native6.html">react-native初识：我使用的组件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native7.html">react-native实战:轮播引导和登陆注册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native8.html">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native9.html">react-native实战:支付宝接入app支付</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">react-native扩展:IOS踩坑纪录</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mac">MAC虚拟机配置流程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">黑苹果镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vmwareunlocker">VMware使用unlocker破解</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">安装MAC虚拟机</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mac-terminal-proxy">MAC terminal proxy 代理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#react-native">配置react-native运行环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rnmac">将RN项目移植到MAC环境下运行</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">第三方模块的逐个重新安装</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#react-native-vector-icons">react-native-vector-icons 图标库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#react-native-image-crop-picker">react-native-image-crop-picker 相机相册</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#react-native-yunpeng-alipay">react-native-yunpeng-alipay 支付宝支付</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#react-native-progress">react-native-progress 加载动画</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#iphone-x">IPhone X屏幕适配</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">杂项</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bs4.html">bs4爬虫实战:全家Family网站攻略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pythread.html">Python多线程：Family数据批量生成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openssh.html">Paramiko：Python+ssh做快乐网管</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fiddler.html">Fiddler:借助抓包工具写手机APP的Python脚本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Web 后端</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../springboot1.html">Springboot初识:了解Spring</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>react-native扩展:IOS踩坑纪录</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/react-native/react-native10.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native-ios">
+<h1>react-native扩展:IOS踩坑纪录<a class="headerlink" href="#react-native-ios" title="Permalink to this headline">¶</a></h1>
+<img alt="../_images/rnmac.png" src="../_images/rnmac.png" />
+<p>Apple公司
+<strong>不允许非Mac电脑</strong>
+开发IOS，编译IOS应用
+<strong>必须使用Xcode</strong>
+，应用打包
+<strong>必须先申请IOS开发者资质（99美刀/年）</strong>
+，否则就只能在虚拟机上望梅止渴。</p>
+<p>关于申请Apple开发者资质，我整理了一份流程，
+<a class="reference external" href="http://47.100.107.158/file/apple.pdf">通过链接下载</a></p>
+<p>申明，我是个windows+android用户，没有Mac也没有iphone(而这些都是开发IOS的必要条件)。</p>
+<p>但是没有办法，需要编译IOS版本，只能硬着头皮上了。</p>
+<div class="section" id="mac">
+<h2>MAC虚拟机配置流程<a class="headerlink" href="#mac" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>黑苹果镜像<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>为了省下租借（购买）MAC电脑的钱,一定要交社费进入万恶的
+<a class="reference external" href="https://osx.cx/">黑苹果社区</a></p>
+<p>我在这里获取了MacOS mojave 10.14的黑苹果镜像（当然，在此你就可以选择另一条道路——安装双系统而非虚拟机）</p>
+<p>并通过
+<a class="reference external" href="http://www.enfi.cloud/">ENFI下载器</a>
+快速下载了（没有度盘会员的穷你们懂吗）</p>
+</div>
+<div class="section" id="vmwareunlocker">
+<h3>VMware使用unlocker破解<a class="headerlink" href="#vmwareunlocker" title="Permalink to this headline">¶</a></h3>
+<p>首先提供一下我看的两篇unlocker教程</p>
+<p><a class="reference external" href="https://www.52pojie.cn/thread-1032336-1-1.html">VMware 15.5 unlocker</a></p>
+<p><a class="reference external" href="https://www.52pojie.cn/thread-804000-1-1.html">VMware 15.0 unlocker</a></p>
+<p>大致流程是 1.任务管理器关闭VMware监控进程  2.以管理员身份运行unlocker</p>
+<p>通过unlocker，VMware创建虚拟机中的Mac选项被解锁。</p>
+<p>什么？你VMware没激活？这种问题你好意思问吗？</p>
+</div>
+<div class="section" id="id4">
+<h3>安装MAC虚拟机<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>准备好Apple账号</p>
+<p>按照
+<a class="reference external" href="https://www.52pojie.cn/thread-804000-1-1.html">VM安装MAC教程</a>
+一步步走下来之后，苹果系统已经可以正常使用。</p>
+<img alt="../_images/macos.png" src="../_images/macos.png" />
+<p>然后个人使用区别的感触：</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>不适处</p></td>
+<td><p>Windows</p></td>
+<td><p>Mac</p></td>
+</tr>
+<tr class="row-even"><td><p>窗口按钮</p></td>
+<td><p>在窗口右上角</p></td>
+<td><p>在窗口左上角</p></td>
+</tr>
+<tr class="row-odd"><td><p>软件menu位置</p></td>
+<td><p>窗口左上方，跟随窗口</p></td>
+<td><p>固定在屏幕左上方</p></td>
+</tr>
+</tbody>
+</table>
+<p>按钮换个位置我也能适应，但这个菜单位置真是时常让我有种质壁分离的错觉。</p>
+</div>
+</div>
+<div class="section" id="mac-terminal-proxy">
+<h2>MAC terminal proxy 代理<a class="headerlink" href="#mac-terminal-proxy" title="Permalink to this headline">¶</a></h2>
+<p>在MAC上使用SSR、SR等科学上网工具要注意一点————全局模式也不会影响terminal</p>
+<p>所以需要额外对terminal进行proxy设置</p>
+<p>参考
+<a class="reference external" href="https://www.jianshu.com/p/9c93f9484b0d">Mac terminal终端配置代理</a></p>
+</div>
+<div class="section" id="react-native">
+<h2>配置react-native运行环境<a class="headerlink" href="#react-native" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://reactnative.cn/docs/getting-started.html">react-native官网教程</a></p>
+<p>首先打开科学上网工具，安装
+<strong>Node</strong>
+、
+<strong>Watchman</strong>
+和
+<strong>React Native命令行工具</strong>
+以及
+<strong>Xcode</strong>
+（从
+<a class="reference external" href="https://developer.apple.com/download/more/">Apple官网</a>
+下载）
+。</p>
+<p>RN的要求是Xcode 10及以上，我下载了Xcode 10.1，追悔莫及。</p>
+<p>为什么这么说，这是因为之后的很多bug，我在stackoverflow上搜索时，
+见到了这样的解决办法：</p>
+<blockquote>
+<div><p>I updated Xcode 10.1 to Xcode 11.1 and then the problem fixed.</p>
+</div></blockquote>
+<p>我看到这个都要哭出来了—-</p>
+<p>安装成功后</p>
+<p><strong>react-native init xxx</strong></p>
+<p><strong>cd ./xxx</strong></p>
+<p><strong>react-native run-ios</strong></p>
+<p>成功运行了样例</p>
+</div>
+<div class="section" id="rnmac">
+<h2>将RN项目移植到MAC环境下运行<a class="headerlink" href="#rnmac" title="Permalink to this headline">¶</a></h2>
+<p>本以为移植过来直接run-ios就可以了，结果死的很惨系列</p>
+<p>红屏镇楼</p>
+<img alt="../_images/redscreen.png" src="../_images/redscreen.png" />
+<p>因为不知道到底是哪个第三方模块出了问题，只好逐个排查</p>
+<div class="section" id="id6">
+<h3>第三方模块的逐个重新安装<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>首先</p>
+<p>思路是一个个装，装到哪个出了问题就肯定是哪个了</p>
+<p>血与泪的纪录，找出四个害人精</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">add</span> <span class="n">native</span><span class="o">-</span><span class="n">base</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">navigation</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">gesture</span><span class="o">-</span><span class="n">handler</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">material</span><span class="o">-</span><span class="n">ui</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="nd">@react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">community</span><span class="o">/</span><span class="k">async</span><span class="o">-</span><span class="n">storage</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">vector</span><span class="o">-</span><span class="n">icons</span>
+<span class="c1">#第一个害人精</span>
+
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">share</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">crop</span><span class="o">-</span><span class="n">picker</span>
+<span class="c1">#第二个害人精</span>
+
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">zoom</span><span class="o">-</span><span class="n">viewer</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">yunpeng</span><span class="o">-</span><span class="n">alipay</span>
+<span class="c1">#第三个害人精</span>
+
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">swiper</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">pan</span><span class="o">-</span><span class="n">zoom</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">img</span><span class="o">-</span><span class="n">cache</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">progress</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">progress</span>
+<span class="c1">#第四个害人精</span>
+
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">fetch</span><span class="o">-</span><span class="n">blob</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">navigation</span><span class="o">-</span><span class="n">stack</span>
+</pre></div>
+</div>
+<div class="section" id="react-native-vector-icons">
+<h4>react-native-vector-icons 图标库<a class="headerlink" href="#react-native-vector-icons" title="Permalink to this headline">¶</a></h4>
+<p>这个问题很普遍，很快就找到了
+<a class="reference external" href="https://www.cnblogs.com/evai/p/5804751.html">对应的解决办法</a></p>
+</div>
+<div class="section" id="react-native-image-crop-picker">
+<h4>react-native-image-crop-picker 相机相册<a class="headerlink" href="#react-native-image-crop-picker" title="Permalink to this headline">¶</a></h4>
+<p>报错是QBimagepicker的问题，这让我想起了当初使用这个库的时候有一大段看不懂的文字。</p>
+<p>通过仔细阅读
+<a class="reference external" href="https://github.com/ivpusic/react-native-image-crop-picker">react-native-crop-picker文档</a>
+中的Post-install steps-IOS 解决。</p>
+</div>
+<div class="section" id="react-native-yunpeng-alipay">
+<h4>react-native-yunpeng-alipay 支付宝支付<a class="headerlink" href="#react-native-yunpeng-alipay" title="Permalink to this headline">¶</a></h4>
+<p>这个组件是真的害人，他没有编译ios版本，很快我就使用了
+<a class="reference external" href="https://www.jianshu.com/p/0728c30820c3">新的支付宝接入的实现方法</a>
+。</p>
+</div>
+<div class="section" id="react-native-progress">
+<h4>react-native-progress 加载动画<a class="headerlink" href="#react-native-progress" title="Permalink to this headline">¶</a></h4>
+<p>这个组件库很棒，但为啥出了问题呢？</p>
+<p>因为在IOS里，作为基础库的react-native-art不会被默认导入，但android里是预编译的。</p>
+<dl class="simple">
+<dt>具体方法参考了很多博客：</dt><dd><p>Go the Build Phase tab of YOUR PROJECT, add libART.a into Link Binary into Libraries.</p>
+</dd>
+</dl>
+<img alt="../_images/xcodeart.png" src="../_images/xcodeart.png" />
+<p>过程中出现了include失败的问题，将search header files中的方式改为recursive（递归地）并添加一些头文件目录</p>
+<img alt="../_images/xcodesetting.png" src="../_images/xcodesetting.png" />
+</div>
+</div>
+<div class="section" id="iphone-x">
+<h3>IPhone X屏幕适配<a class="headerlink" href="#iphone-x" title="Permalink to this headline">¶</a></h3>
+<p>历经九九八十一难，项目终于成功跑起来了。</p>
+<p>然后遇到了屏幕适配问题，Iphone X已经升级成全面屏，屏幕下方60px高度被系统键占用。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">X_WIDTH</span> <span class="o">=</span> <span class="mi">375</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">X_HEIGHT</span> <span class="o">=</span> <span class="mi">812</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">SCREEN_WIDTH</span> <span class="o">=</span> <span class="n">Dimensions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;window&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">width</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">SCREEN_HEIGHT</span> <span class="o">=</span> <span class="n">Dimensions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;window&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">height</span><span class="p">;</span>
+
+<span class="n">const</span> <span class="n">isiosx</span><span class="o">=</span> <span class="p">(</span><span class="n">Platform</span><span class="o">.</span><span class="n">OS</span> <span class="o">===</span> <span class="s1">&#39;ios&#39;</span> <span class="o">&amp;&amp;</span>
+    <span class="p">((</span><span class="n">SCREEN_WIDTH</span> <span class="o">===</span> <span class="n">X_WIDTH</span> <span class="o">&amp;&amp;</span> <span class="n">SCREEN_HEIGHT</span> <span class="o">===</span> <span class="n">X_HEIGHT</span><span class="p">)</span>
+    <span class="o">||</span><span class="p">(</span><span class="n">SCREEN_WIDTH</span> <span class="o">===</span> <span class="n">X_HEIGHT</span> <span class="o">&amp;&amp;</span> <span class="n">SCREEN_HEIGHT</span> <span class="o">===</span> <span class="n">X_WIDTH</span><span class="p">)));</span>
+</pre></div>
+</div>
+<p>通过判断IOS X来对组件进行调整，EZ。</p>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../bs4.html" class="btn btn-neutral float-right" title="bs4爬虫实战:全家Family网站攻略" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="react-native9.html" class="btn btn-neutral float-left" title="react-native实战:支付宝接入app支付" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

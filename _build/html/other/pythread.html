@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Python多线程：Family数据批量生成 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Paramiko：Python+ssh做快乐网管" href="openssh.html" />
+    <link rel="prev" title="bs4爬虫实战:全家Family网站攻略" href="bs4.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="../blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-post.html">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ablog.html">我如何创建自己的博客</a></li>
+</ul>
+<p class="caption"><span class="caption-text">react-native</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native4.html">react-native初识: state 和 props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native5.html">react-native初识:布局和CSS样式、第三方库的引入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native6.html">react-native初识：我使用的组件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native7.html">react-native实战:轮播引导和登陆注册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native8.html">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native9.html">react-native实战:支付宝接入app支付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native10.html">react-native扩展:IOS踩坑纪录</a></li>
+</ul>
+<p class="caption"><span class="caption-text">杂项</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bs4.html">bs4爬虫实战:全家Family网站攻略</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python多线程：Family数据批量生成</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pip">使用pip工具安装库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">数据添加任务</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">数据库表结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">表内逻辑关系</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">后端逻辑补全</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">创建个体时计算过期日期</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">判断过期</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">统计在售数量</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">批量生成数据</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#goodtype">随机生成goodtype表中保质期</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#good">批量生成good个体</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">多线程添加结果示意图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">最终代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">探究的第一步-爆炸</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">探究的第二步-求稳但内心拒绝</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">探究的第三步-嵌套多线程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">最高效的解决办法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">完整代码下载</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="openssh.html">Paramiko：Python+ssh做快乐网管</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fiddler.html">Fiddler:借助抓包工具写手机APP的Python脚本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Web 后端</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../backend/springboot1.html">Springboot初识:了解Spring</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Python多线程：Family数据批量生成</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/other/pythread.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="python-family">
+<h1>Python多线程：Family数据批量生成<a class="headerlink" href="#python-family" title="Permalink to this headline">¶</a></h1>
+<p>本篇日志记载我使用python批量生成数据添加到
+<a class="reference external" href="http://47.100.107.158/shop?userID=yk001">全家Family模拟网站</a>
+数据库上的过程。</p>
+<div class="section" id="pip">
+<h2>使用pip工具安装库<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
+<p><strong>pip install requests</strong></p>
+</div>
+<div class="section" id="id1">
+<h2>数据添加任务<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>数据库表结构<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>首先，已有从Family网站上爬取的七百多种商品种类</p>
+<img alt="../_images/threaddata.png" src="../_images/threaddata.png" />
+<p>其次就是为每个品种创建足够多的个体</p>
+<img alt="../_images/threaddata2.png" src="../_images/threaddata2.png" />
+<p>争对每个个体，需要模拟创建的属性 是
+<strong>商品编号</strong>
+和
+<strong>生产日期</strong>
+。</p>
+</div>
+<div class="section" id="id3">
+<h3>表内逻辑关系<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>生产日期(makedate) ＋ 保质期(guarantee) = 过期日期(enddate)</p>
+<p>当前日期(nowdate) &gt; 过期日期(enddate) =&gt; 过期 (state=’过期’)</p>
+<p>可售数量(total) = 统计在售数量(state=’在售’)</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>后端逻辑补全<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>创建个体时计算过期日期<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s2">&quot;/add&quot;</span><span class="p">)</span>
+<span class="n">public</span> <span class="n">Response</span> <span class="n">add</span><span class="p">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">goodid</span><span class="p">,</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">goodname</span><span class="p">,</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">makedate</span><span class="p">){</span>
+    <span class="k">try</span><span class="p">{</span>
+        <span class="n">Good</span> <span class="n">a</span><span class="o">=</span><span class="n">new</span> <span class="n">Good</span><span class="p">();</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">setGoodID</span><span class="p">(</span><span class="n">goodid</span><span class="p">);</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">setGoodname</span><span class="p">(</span><span class="n">goodname</span><span class="p">);</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">setMakedate</span><span class="p">(</span><span class="n">makedate</span><span class="p">);</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">setState</span><span class="p">(</span><span class="s2">&quot;在售&quot;</span><span class="p">);</span>
+
+        <span class="c1">#根据保质期计算过期日期</span>
+        <span class="n">SimpleDateFormat</span> <span class="n">formatter</span> <span class="o">=</span> <span class="n">new</span> <span class="n">SimpleDateFormat</span><span class="p">(</span><span class="s2">&quot;yyyy-MM-dd&quot;</span><span class="p">);</span>
+        <span class="n">Date</span> <span class="n">mkdate</span><span class="o">=</span><span class="n">formatter</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">makedate</span><span class="p">);</span>
+        <span class="n">Calendar</span> <span class="n">cal</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="n">getInstance</span><span class="p">();</span>
+        <span class="n">cal</span><span class="o">.</span><span class="n">setTime</span><span class="p">(</span><span class="n">mkdate</span><span class="p">);</span>
+        <span class="n">cal</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Calendar</span><span class="o">.</span><span class="n">DATE</span><span class="p">,</span> <span class="n">goodService</span><span class="o">.</span><span class="n">getguarantee</span><span class="p">(</span><span class="n">goodname</span><span class="p">));</span>
+        <span class="n">Date</span> <span class="n">eddate</span><span class="o">=</span><span class="n">cal</span><span class="o">.</span><span class="n">getTime</span><span class="p">();</span>
+        <span class="n">String</span> <span class="n">end</span><span class="o">=</span><span class="n">formatter</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eddate</span><span class="p">);</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">setEnddate</span><span class="p">(</span><span class="n">end</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">genSuccessResult</span><span class="p">(</span><span class="n">goodService</span><span class="o">.</span><span class="n">addone</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+    <span class="p">}</span><span class="n">catch</span> <span class="p">(</span><span class="ne">Exception</span> <span class="n">e</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">genFailResult</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">toString</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>判断过期<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="k">class</span> <span class="nc">GoodService</span> <span class="p">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="n">GoodRepository</span> <span class="n">goodRepository</span><span class="p">;</span>
+
+    <span class="n">public</span> <span class="n">void</span> <span class="n">allguarantee</span><span class="p">(){</span>
+        <span class="c1">#传入当前时间</span>
+        <span class="n">Date</span> <span class="n">now</span><span class="o">=</span><span class="n">new</span> <span class="n">Date</span><span class="p">();</span>
+        <span class="n">SimpleDateFormat</span> <span class="n">formatter</span> <span class="o">=</span> <span class="n">new</span> <span class="n">SimpleDateFormat</span><span class="p">(</span><span class="s2">&quot;yyyy-MM-dd&quot;</span><span class="p">);</span>
+        <span class="n">String</span> <span class="n">nowstr</span><span class="o">=</span><span class="n">formatter</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">now</span><span class="p">);</span>
+        <span class="n">goodRepository</span><span class="o">.</span><span class="n">allguarantee</span><span class="p">(</span><span class="n">nowstr</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@Repository</span>
+<span class="n">public</span> <span class="n">interface</span> <span class="n">GoodRepository</span> <span class="n">extends</span> <span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Good</span><span class="p">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="nd">@Transactional</span>
+    <span class="nd">@Modifying</span>
+    <span class="nd">@Query</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;update good set state=&#39;过期&#39; where enddate&lt;?1&quot;</span><span class="p">,</span> <span class="n">nativeQuery</span> <span class="o">=</span> <span class="n">true</span><span class="p">)</span>
+    <span class="n">public</span> <span class="n">void</span> <span class="n">allguarantee</span><span class="p">(</span><span class="n">String</span> <span class="n">now</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>统计在售数量<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@Transactional</span>
+<span class="nd">@Modifying</span>
+<span class="nd">@Query</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;update goodtype set total=(SELECT count(*) from good where state=&#39;在售&#39; and typex=good_name)&quot;</span><span class="p">,</span> <span class="n">nativeQuery</span> <span class="o">=</span> <span class="n">true</span><span class="p">)</span>
+<span class="n">public</span> <span class="n">void</span> <span class="n">updatesale</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>批量生成数据<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="goodtype">
+<h3>随机生成goodtype表中保质期<a class="headerlink" href="#goodtype" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;http://47.100.107.158:80/goodtype/setguarantee?&quot;</span><span class="o">+</span><span class="s2">&quot;goodname=&quot;</span><span class="o">+</span><span class="n">a</span><span class="o">+</span><span class="s2">&quot;&amp;guarantee=&quot;</span><span class="o">+</span><span class="n">b</span>
+    <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mkguarantee</span><span class="p">():</span>
+    <span class="c1">#随机生成3~30的整数</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">guarantee</span><span class="p">():</span>
+    <span class="n">resp</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://47.100.107.158/goodtype/all&quot;</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">goodname</span><span class="o">=</span><span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">goodname</span><span class="p">,</span><span class="n">mkguarantee</span><span class="p">())</span>
+        <span class="n">pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">run2</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">goodname</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">mkguarantee</span><span class="p">()))))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="good">
+<h3>批量生成good个体<a class="headerlink" href="#good" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h4>多线程添加结果示意图<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<img alt="../_images/threadres1.gif" src="../_images/threadres1.gif" />
+</div>
+<div class="section" id="id10">
+<h4>最终代码<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;http://47.100.107.158:80/good/add?&quot;</span><span class="o">+</span><span class="s2">&quot;goodid=&quot;</span><span class="o">+</span><span class="n">a</span><span class="o">+</span><span class="s2">&quot;&amp;goodname=&quot;</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="s2">&quot;&amp;makedate=&quot;</span><span class="o">+</span><span class="n">c</span>
+    <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mkdate</span><span class="p">():</span>
+    <span class="n">a</span><span class="o">=</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">b</span><span class="o">=</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">start</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1">#生成开始时间戳</span>
+    <span class="n">end</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>      <span class="c1">#生成结束时间戳</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">)</span>
+    <span class="n">date_touple</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="c1">#输出为&quot;2019-12-09&quot;格式</span>
+    <span class="n">date</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">date_touple</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">date</span>
+
+<span class="k">def</span> <span class="nf">good</span><span class="p">():</span>
+    <span class="n">resp</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://47.100.107.158/goodtype/all&quot;</span><span class="p">)</span>
+    <span class="c1">#解析json</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+    <span class="c1">#枚举商品种类</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+        <span class="n">pool</span><span class="o">=</span><span class="p">[]</span>
+        <span class="c1">#随机个数在10~99之间</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">99</span><span class="p">)):</span>
+            <span class="n">date</span><span class="o">=</span><span class="n">mkdate</span><span class="p">()</span>
+            <span class="c1">#构造商品编号</span>
+            <span class="n">goodid</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1000</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">99</span><span class="p">)</span><span class="o">+</span><span class="mi">100</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="n">date</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="n">date</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span><span class="o">+</span><span class="n">date</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+            <span class="n">goodname</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">goodid</span><span class="p">,</span><span class="n">goodname</span><span class="p">,</span><span class="n">date</span><span class="p">)</span>
+            <span class="n">pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">run1</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">goodid</span><span class="p">,</span><span class="n">goodname</span><span class="p">,</span><span class="n">date</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+            <span class="n">j</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+            <span class="n">j</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>仔细看会发现这里的多线程在外层循环内，这是最终的结果。</p>
+</div>
+<div class="section" id="id11">
+<h4>探究的第一步-爆炸<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<p>将所有requests加入线程池后开始</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">good</span><span class="p">():</span>
+    <span class="n">resp</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://47.100.107.158/goodtype/all&quot;</span><span class="p">)</span>
+    <span class="c1">#解析json</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
+    <span class="n">pool</span><span class="o">=</span><span class="p">[]</span>
+    <span class="c1">#枚举商品种类</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+        <span class="c1">#随机个数在10~99之间</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">99</span><span class="p">)):</span>
+            <span class="n">date</span><span class="o">=</span><span class="n">mkdate</span><span class="p">()</span>
+            <span class="c1">#构造商品编号</span>
+            <span class="n">goodid</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1000</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">99</span><span class="p">)</span><span class="o">+</span><span class="mi">100</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="n">date</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="n">date</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span><span class="o">+</span><span class="n">date</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+            <span class="n">goodname</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">goodid</span><span class="p">,</span><span class="n">goodname</span><span class="p">,</span><span class="n">date</span><span class="p">)</span>
+            <span class="n">pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">run1</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">goodid</span><span class="p">,</span><span class="n">goodname</span><span class="p">,</span><span class="n">date</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>得到的结果是：</p>
+<img alt="../_images/threadres2.gif" src="../_images/threadres2.gif" />
+<p>输出速度
+<strong>快到爆炸</strong>
+，根本看不清每一条</p>
+<p>但三秒后，就开始出现某些很长的重复项
+，啊，是系统报错输出！</p>
+<blockquote>
+<div><p><strong>RuntimeError: can’t start new thread</strong></p>
+</div></blockquote>
+<p>查阅stackoverflow，发现是本机线程数到达了上限，所以无法并发新的线程，
+上限大概是10^2 ~ 10^3数量级。</p>
+<p>这可怎么办，我的总request数期望在 (10+99)/2*727=39621
+，但无法同时并发</p>
+</div>
+<div class="section" id="id12">
+<h4>探究的第二步-求稳但内心拒绝<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<p>于是我退了一步，尝试了现在的
+<strong>外层for循环+单组多线程</strong>
+，但还是让我无法忍受，
+毕竟每一组要近3s，而总共有七百多组。</p>
+</div>
+<div class="section" id="id13">
+<h4>探究的第三步-嵌套多线程<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<p>将外层循环也改为多线程并发</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">pool</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">99</span><span class="p">)):</span>
+        <span class="n">date</span><span class="o">=</span><span class="n">mkdate</span><span class="p">()</span>
+        <span class="n">goodid</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">1000</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">99</span><span class="p">)</span><span class="o">+</span><span class="mi">100</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="n">date</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="n">date</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span><span class="o">+</span><span class="n">date</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="n">goodname</span><span class="o">=</span><span class="n">b</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">goodid</span><span class="p">,</span><span class="n">goodname</span><span class="p">,</span><span class="n">date</span><span class="p">)</span>
+        <span class="n">pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">run1</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">goodid</span><span class="p">,</span><span class="n">goodname</span><span class="p">,</span><span class="n">date</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">j</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">good</span><span class="p">():</span>
+    <span class="n">resp</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://47.100.107.158/goodtype/all&quot;</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
+    <span class="n">wpool</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">wpool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">run3</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">))))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">wpool</span><span class="p">:</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">wpool</span><span class="p">:</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>虽然很显然不能解决线程数超标的问题
+，但我足够沙雕，想要试一试嵌套多线程能否达到优化的效果，
+然后出现了神奇的景象</p>
+<img alt="../_images/threadres3.gif" src="../_images/threadres3.gif" />
+<p>先是和先前一样的爆炸快输出,
+3秒后很快开始夹杂了线程报错。</p>
+<p>大概运行了10s后，
+外层循环的七百多个线程逐一坏死。</p>
+<img alt="../_images/threadres4.png" src="../_images/threadres4.png" />
+<p>然后整个mysql也因为巨量IO变得一顿一顿的，
+于是我赶紧抓住机会对Good表执行了deleteall操作，爽！！</p>
+</div>
+<div class="section" id="id14">
+<h4>最高效的解决办法<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<p>首先测试出线程池的最大并发容量（因机器而异）</p>
+<p>然后将万条request按该容量分组并发</p>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>完整代码下载<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>挂在我可怜的学生服务器上了，
+<a class="reference external" href="http://47.100.107.158/file/familymart_random_good.py">点这里就行</a></p>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="openssh.html" class="btn btn-neutral float-right" title="Paramiko：Python+ssh做快乐网管" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="bs4.html" class="btn btn-neutral float-left" title="bs4爬虫实战:全家Family网站攻略" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

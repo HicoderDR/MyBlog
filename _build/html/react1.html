@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>React初识:想优雅地写网页 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-post.html">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ablog.html">我如何创建自己的博客</a></li>
+</ul>
+<p class="caption"><span class="caption-text">react-native</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="react-native/react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native/react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native/react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native/react-native4.html">react-native初识: state 和 props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native/react-native5.html">react-native初识:布局和CSS样式、第三方库的引入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native/react-native6.html">react-native初识：我使用的组件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native/react-native7.html">react-native实战:轮播引导和登陆注册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native/react-native8.html">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native/react-native9.html">react-native实战:支付宝接入app支付</a></li>
+</ul>
+<p class="caption"><span class="caption-text">IOS开发</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ios/react-native10.html">react-native扩展:IOS踩坑纪录</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ios/iap.html">IOS 内购—奔溃一条龙</a></li>
+</ul>
+<p class="caption"><span class="caption-text">杂项</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="other/bs4.html">bs4爬虫实战:全家Family网站攻略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other/pythread.html">Python多线程：Family数据批量生成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other/openssh.html">Paramiko：Python+ssh做快乐网管</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other/fiddler.html">Fiddler:借助抓包工具写手机APP的Python脚本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Web 后端</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="backend/springboot1.html">Springboot初识:了解Spring</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>React初识:想优雅地写网页</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/react1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react">
+<h1>React初识:想优雅地写网页<a class="headerlink" href="#react" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>之前看到一个程序员漫画，一个无望的人在小岛上等待救援，
+在开阔处摆出SOS、HELP等字样，飞机都视若不见，后来他想了个鬼点子，摆出</p>
+<p><strong>PHP IS THE BEST!</strong>
+<strong>HTML IS THE BEST!</strong></p>
+<p>飞机路过后被雷得掉了下来</p>
+</div></blockquote>
+<p>这足以证明HTML、PHP等基础的网页开发带给我们十分不快的编程体验，
+就像一句古老的名言：“C语言是世界上最好的语言”。</p>
+<p>本篇记载我初识React的经历。</p>
+<div class="section" id="reactreact-native">
+<h2>React和React-native<a class="headerlink" href="#reactreact-native" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>下载<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.telerik.com/fiddler">Fiddler官网</a>
+从这里下载Fiddler</p>
+</div>
+<div class="section" id="id2">
+<h3>配置<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>打开Fiddler,Tools-&gt; Fiddler Options 。（配置完后记得要重启Fiddler）.</p>
+<p>1.选中”Decrpt HTTPS traffic”,    Fiddler就可以截获HTTPS请求</p>
+<p>2.选中”Allow remote computers to connect”.  是允许别的机器把HTTP/HTTPS请求发送到Fiddler上来</p>
+<img alt="../_static/fid10.png" src="../_static/fid10.png" />
+<img alt="../_static/fid11.png" src="../_static/fid11.png" />
+</div>
+<div class="section" id="id3">
+<h3>连接手机抓包<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>首先确保手机和电脑连接在同一个wifi下</p>
+<p>通过
+<strong>ipconfig</strong>
+指令查阅本机IPv4地址</p>
+<img alt="../_static/fid14.png" src="../_static/fid14.png" />
+<p>然后对手机wifi进行代理配置，以我的oppo R11 Plus为例</p>
+<p>点击WIFI详情，设置代理为手动，并配置代理IP和端口号8888</p>
+<img alt="../_static/fid12.png" src="../_static/fid12.png" />
+<img alt="../_static/fid13.jpg" src="../_static/fid13.jpg" />
+<p>配置完毕手机上发送的请求应该已经能够通过fiddler抓取</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>微博动漫<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="app">
+<h3>打开微博动漫APP的福利页<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h3>
+<p>点击领取后观察Fiddler</p>
+<img alt="../_static/fid1.png" src="../_static/fid1.png" />
+<p>找到
+<strong>领取福利</strong>
+的相关请求welfare_list和receive_welfare</p>
+<img alt="../_static/fid2.png" src="../_static/fid2.png" />
+<img alt="../_static/fid3.png" src="../_static/fid3.png" />
+</div>
+<div class="section" id="postman">
+<h3>postman模拟<a class="headerlink" href="#postman" title="Permalink to this headline">¶</a></h3>
+<p>首先只进行一般的模拟，即只设置header中的User-Agent就可以获取到welfare_list</p>
+<img alt="../_static/fid4.png" src="../_static/fid4.png" />
+<p>同理，只要将全部header都抄取过来，就可以完全模拟手机APP登录态的环境</p>
+<img alt="../_static/fid5.png" src="../_static/fid5.png" />
+<img alt="../_static/fid6.png" src="../_static/fid6.png" />
+<p>过程中我经历了
+<strong>多种结果</strong>
+，终于成功复现了</p>
+<img alt="../_static/fid8.png" src="../_static/fid8.png" />
+<img alt="../_static/fid9.png" src="../_static/fid9.png" />
+<img alt="../_static/fid7.png" src="../_static/fid7.png" />
+<p>接下来只需要使用Python或Java设置定时任务发送请求即可</p>
+</div>
+</div>
+<div class="section" id="python">
+<h2>Python脚本<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>首先写一份单次运行</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="k">import</span> <span class="n">parse</span>
+
+<span class="n">path</span><span class="o">=</span><span class="s1">&#39;http://manhua.weibo.cn/wbcomic/vip/receive_welfare?_type=android HTTP/1.1&#39;</span>
+<span class="c1">#复现的Headers</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Connection&#39;</span><span class="p">:</span> <span class="s1">&#39;keep-alive&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-Length&#39;</span><span class="p">:</span> <span class="s1">&#39;28&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Origin&#39;</span><span class="p">:</span> <span class="s1">&#39;http://manhua.weibo.cn&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Linux; Android 8.1.0; OPPO R11 Pluskt Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Referer&#39;</span><span class="p">:</span> <span class="s1">&#39;http://manhua.weibo.cn/app/vip/welfare_list&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept-Encoding&#39;</span><span class="p">:</span> <span class="s1">&#39;gzip, deflate&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept-Language&#39;</span><span class="p">:</span> <span class="s1">&#39;zh-CN,en-US;q=0.9&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cookie&#39;</span><span class="p">:</span> <span class="s1">&#39;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X-Requested-With&#39;</span><span class="p">:</span> <span class="s1">&#39;com.weibo.comic&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="c1">#领取墨币</span>
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;activity_id&quot;</span><span class="p">:</span><span class="s2">&quot;28&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;reward_type&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="c1">#领取喵饼</span>
+<span class="n">body2</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;activity_id&quot;</span><span class="p">:</span><span class="s2">&quot;29&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;reward_type&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+<span class="n">resp</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="section" id="timer">
+<h3>再套上这个Timer(定时任务)的模板<a class="headerlink" href="#timer" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">threading</span> <span class="k">import</span> <span class="n">Timer</span>
+
+<span class="c1">#每次执行的任务写在func里</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">RepeatingTimer</span><span class="p">(</span><span class="n">Timer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">finished</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">finished</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">)</span>
+<span class="c1">#设置每隔n秒执行</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">RepeatingTimer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">func</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>完整代码下载<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>挂在我可怜的学生服务器上了，
+<a class="reference external" href="http://47.100.107.158/file/webocomic.py">点这里就行</a></p>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

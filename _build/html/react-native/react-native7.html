@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>react-native实战:轮播引导和登陆注册 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="react-native进阶:秒嘀云+Nativebase实现短信验证码登陆" href="react-native8.html" />
+    <link rel="prev" title="react-native初识：我使用的组件" href="react-native6.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="../blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-post.html">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ablog.html">我如何创建自己的博客</a></li>
+</ul>
+<p class="caption"><span class="caption-text">react-native</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native4.html">react-native初识: state 和 props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native5.html">react-native初识:布局和CSS样式、第三方库的引入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native6.html">react-native初识：我使用的组件</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">react-native实战:轮播引导和登陆注册</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#react-native-swiper">react-native-swiper实现轮播图</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">先看看效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#swiper">swiper部分的代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">设定对于老用户，不播放轮播图</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">登陆注册界面的简单实现</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">先看看效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui">实现登陆的UI代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">实现登陆的服务器代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">老用户自动登陆</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="react-native8.html">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native9.html">react-native实战:支付宝接入app支付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native10.html">react-native扩展:IOS踩坑纪录</a></li>
+</ul>
+<p class="caption"><span class="caption-text">杂项</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bs4.html">bs4爬虫实战:全家Family网站攻略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pythread.html">Python多线程：Family数据批量生成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openssh.html">Paramiko：Python+ssh做快乐网管</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fiddler.html">Fiddler:借助抓包工具写手机APP的Python脚本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Web 后端</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../springboot1.html">Springboot初识:了解Spring</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>react-native实战:轮播引导和登陆注册</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/react-native/react-native7.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native">
+<h1>react-native实战:轮播引导和登陆注册<a class="headerlink" href="#react-native" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="react-native-swiper">
+<h2>react-native-swiper实现轮播图<a class="headerlink" href="#react-native-swiper" title="Permalink to this headline">¶</a></h2>
+<p>本部分的实现会涉及
+<a class="reference external" href="https://hicoderdr.github.io/react-native6/#asyncstorage">AsyncStorage</a>
+、
+<a class="reference external" href="https://reactnavigation.org/docs/en/getting-started.html">React navigation</a>
+和
+<a class="reference external" href="https://github.com/liyinglihuannan/react-native-swiper">react-native-swiper</a>
+，必须有基本了解。</p>
+<div class="section" id="id2">
+<h3>先看看效果<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/swiper.gif" src="../_images/swiper.gif" />
+</div>
+<div class="section" id="swiper">
+<h3>swiper部分的代码<a class="headerlink" href="#swiper" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">Component</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span>
+    <span class="n">View</span><span class="p">,</span>
+    <span class="n">ImageBackground</span><span class="p">,</span>
+    <span class="n">TouchableOpacity</span>
+<span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native&#39;</span>
+<span class="c1">#引入Swiper</span>
+<span class="kn">import</span> <span class="nn">Swiper</span> <span class="kn">from</span> <span class="s1">&#39;react-native-swiper&#39;</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">CriImage</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+    <span class="n">static</span> <span class="n">navigationOptions</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">#去除React-navigation的默认header</span>
+        <span class="n">header</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="p">};</span>
+    <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">Swiper</span>
+                <span class="n">loop</span><span class="o">=</span><span class="p">{</span><span class="n">false</span><span class="p">}</span>            <span class="c1">#设定不循环</span>
+                <span class="n">showsPagination</span><span class="o">=</span><span class="p">{</span><span class="n">false</span><span class="p">}</span> <span class="c1">#是否显示默认分页的小圆点</span>
+                <span class="n">autoplay</span><span class="o">=</span><span class="p">{</span><span class="n">true</span><span class="p">}</span>         <span class="c1">#设定自动延时播放</span>
+                <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}}</span>
+            <span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}}</span><span class="o">&gt;</span>
+                    <span class="c1">#require获取本地图片</span>
+                    <span class="o">&lt;</span><span class="n">ImageBackground</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}}</span> <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="n">require</span><span class="p">(</span><span class="s2">&quot;./android/app/src/main/res/mipmap-hdpi/cri1.png&quot;</span><span class="p">)}</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">justifyContent</span><span class="p">:</span> <span class="s1">&#39;flex-end&#39;</span><span class="p">,</span> <span class="n">alignItems</span><span class="p">:</span> <span class="s1">&#39;flex-end&#39;</span> <span class="p">}}</span><span class="o">&gt;</span>
+                        <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+                    <span class="o">&lt;/</span><span class="n">ImageBackground</span><span class="o">&gt;</span>
+                <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}}</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">ImageBackground</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}}</span> <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="n">require</span><span class="p">(</span><span class="s2">&quot;./android/app/src/main/res/mipmap-hdpi/cri2.png&quot;</span><span class="p">)}</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">justifyContent</span><span class="p">:</span> <span class="s1">&#39;flex-end&#39;</span><span class="p">,</span> <span class="n">alignItems</span><span class="p">:</span> <span class="s1">&#39;flex-end&#39;</span> <span class="p">}}</span><span class="o">&gt;</span>
+                        <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+                    <span class="o">&lt;/</span><span class="n">ImageBackground</span><span class="o">&gt;</span>
+                <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+
+                <span class="c1">#最后一页我设定为 点击屏幕即跳转 所以套用TouchableOpacity</span>
+                <span class="c1">#也可以添加按钮跳转、或使用SetTimeout延时跳转</span>
+                <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}}</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">ImageBackground</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}}</span> <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="n">require</span><span class="p">(</span><span class="s2">&quot;./android/app/src/main/res/mipmap-hdpi/cri3.png&quot;</span><span class="p">)}</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">TouchableOpacity</span> <span class="n">activeOpacity</span><span class="o">=</span><span class="p">{</span><span class="mf">0.8</span><span class="p">}</span>
+                            <span class="n">onPress</span><span class="o">=</span><span class="p">{()</span><span class="o">=&gt;</span><span class="p">{</span>
+                                <span class="c1">#跳转至登陆界面</span>
+                                <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Login&quot;</span><span class="p">)</span>
+                            <span class="p">}}</span>
+                            <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">justifyContent</span><span class="p">:</span> <span class="s1">&#39;flex-end&#39;</span><span class="p">,</span> <span class="n">alignItems</span><span class="p">:</span> <span class="s1">&#39;flex-end&#39;</span> <span class="p">}}</span>
+                        <span class="o">&gt;&lt;/</span><span class="n">TouchableOpacity</span><span class="o">&gt;</span>
+                    <span class="o">&lt;/</span><span class="n">ImageBackground</span><span class="o">&gt;</span>
+                <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">Swiper</span><span class="o">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>设定对于老用户，不播放轮播图<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#引入本地存储</span>
+<span class="kn">import</span> <span class="nn">AsyncStorage</span> <span class="kn">from</span> <span class="s1">&#39;@react-native-community/async-storage&#39;</span><span class="p">;</span>
+<span class="c1">#首先保证用户在使用过APP后，本地存储了信息</span>
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">CriImage</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+    <span class="c1">#.......</span>
+
+    <span class="c1">#页面render前判断并跳转</span>
+    <span class="n">componentWillMount</span><span class="p">(){</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">getData</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">getData</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">const</span> <span class="n">_username</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AsyncStorage</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="s1">&#39;@username&#39;</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">_username</span><span class="o">!==</span><span class="n">null</span><span class="p">)</span> <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Login&quot;</span><span class="p">)</span>
+        <span class="p">}</span> <span class="n">catch</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1"># error reading value</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="c1">#.......</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>登陆注册界面的简单实现<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>我将代码拆解成三部分：UI、服务器请求和本地存储</p>
+<div class="section" id="id5">
+<h3>先看看效果<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/login.gif" src="../_images/login.gif" />
+</div>
+<div class="section" id="ui">
+<h3>实现登陆的UI代码<a class="headerlink" href="#ui" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">Component</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">Button</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native-material-ui&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span>
+<span class="n">json</span><span class="p">,</span>
+<span class="n">Text</span><span class="p">,</span>
+<span class="n">TextInput</span><span class="p">,</span>
+<span class="n">View</span><span class="p">,</span>
+<span class="n">StyleSheet</span><span class="p">,</span>
+<span class="n">Image</span><span class="p">,</span>
+<span class="n">Alert</span><span class="p">,</span>
+<span class="n">Dimensions</span><span class="p">,</span>
+<span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-native&#39;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">Toast</span> <span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;native-base&quot;</span><span class="p">;</span>
+
+<span class="n">const</span> <span class="n">screenW</span> <span class="o">=</span> <span class="n">Dimensions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;window&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">width</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">Login</span> <span class="n">extends</span> <span class="n">Component</span><span class="p">{</span>
+    <span class="n">constructor</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">super</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">Username</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">Password</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">active</span><span class="p">:</span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+            <span class="n">showToast</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">static</span> <span class="n">propTypes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">name1</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+        <span class="n">txtHide1</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+        <span class="n">ispassword1</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span>
+        <span class="n">name2</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+        <span class="n">txtHide2</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+        <span class="n">ispassword2</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span>
+        <span class="n">resultjson</span><span class="p">:</span><span class="n">json</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="c1">#设定props初值</span>
+    <span class="n">static</span> <span class="n">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">name1</span><span class="p">:</span> <span class="s1">&#39;账号&#39;</span><span class="p">,</span>
+        <span class="n">txtHide1</span><span class="p">:</span> <span class="s1">&#39;请输入您的用户名&#39;</span><span class="p">,</span>
+        <span class="n">ispassword1</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+        <span class="n">name2</span><span class="p">:</span> <span class="s1">&#39;密码&#39;</span><span class="p">,</span>
+        <span class="n">txtHide2</span><span class="p">:</span> <span class="s1">&#39;请输入密码&#39;</span><span class="p">,</span>
+        <span class="n">ispassword2</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">static</span> <span class="n">navigationOptions</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">header</span><span class="p">:</span><span class="n">null</span><span class="p">,</span>
+    <span class="p">};</span>
+    <span class="n">render</span><span class="p">(){</span>
+        <span class="n">var</span> <span class="p">{</span>  <span class="n">name1</span><span class="p">,</span> <span class="n">txtHide1</span><span class="p">,</span> <span class="n">ispassword1</span><span class="p">,</span><span class="n">name2</span><span class="p">,</span> <span class="n">txtHide2</span><span class="p">,</span> <span class="n">ispassword2</span> <span class="p">}</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">props</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="c1">#使用flexbox布局的写法</span>
+            <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">flex</span><span class="p">:</span> <span class="mi">2</span><span class="p">}}</span><span class="o">&gt;</span>
+                <span class="c1">#空白的占位View</span>
+                <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">flex</span><span class="p">:</span><span class="mi">2</span><span class="p">}}</span><span class="o">&gt;&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+
+                <span class="c1">#本地人像图片</span>
+                <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">height</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="n">flexDirection</span><span class="p">:</span><span class="s1">&#39;row&#39;</span><span class="p">,</span><span class="n">justifyContent</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">}}</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">Image</span>
+                        <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span><span class="n">borderRadius</span><span class="p">:</span><span class="mi">50</span><span class="p">}}</span>
+                        <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="n">require</span><span class="p">(</span><span class="s2">&quot;./android/app/src/main/res/mipmap-hdpi/personimg.jpg&quot;</span><span class="p">)}</span>
+                    <span class="o">/&gt;</span>
+                <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+
+                <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">flex</span><span class="p">:</span><span class="mi">1</span><span class="p">}}</span><span class="o">&gt;&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+
+                <span class="c1">#用户名输入框</span>
+                <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">flex</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="n">justifyContent</span><span class="p">:</span> <span class="s1">&#39;space-evenly&#39;</span><span class="p">,}}</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="n">flexDirection</span><span class="p">:</span> <span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">justifyContent</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span> <span class="p">}}</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">container</span><span class="p">}</span><span class="o">&gt;</span>
+                            <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">txtBorder</span><span class="p">}</span><span class="o">&gt;</span>
+                                <span class="o">&lt;</span><span class="n">Text</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">txtName</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">name1</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+                                <span class="o">&lt;</span><span class="n">TextInput</span>
+                                    <span class="n">underlineColorAndroid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;transparent&#39;</span><span class="p">}</span>
+                                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">textInput</span><span class="p">}</span>
+                                    <span class="n">multiline</span><span class="o">=</span><span class="p">{</span><span class="n">false</span><span class="p">}</span>           <span class="c1">#禁止多行文本</span>
+                                    <span class="n">placeholder</span><span class="o">=</span><span class="p">{</span><span class="n">txtHide1</span><span class="p">}</span>      <span class="c1">#框内未空白时的灰字提示</span>
+                                    <span class="n">password</span><span class="o">=</span><span class="p">{</span><span class="n">ispassword1</span><span class="p">}</span>      <span class="c1">#调用password属性，true则输入后默认隐藏</span>
+                                    <span class="c1">#实时回调 更新state</span>
+                                    <span class="n">onChangeText</span><span class="o">=</span><span class="p">{(</span><span class="n">text</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                                        <span class="n">this</span><span class="o">.</span><span class="n">setState</span><span class="p">({</span>
+                                            <span class="n">Username</span><span class="p">:</span> <span class="n">text</span>
+                                        <span class="p">})</span>
+                                    <span class="p">}</span>
+                                    <span class="c1">#渲染时默认填state内的值，如果不写，每次render就会刷新为空</span>
+                                    <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">Username</span><span class="p">}</span>
+                                <span class="o">/&gt;</span>
+                            <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+                        <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+                    <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+
+                    <span class="c1">#下一个框依葫芦画瓢</span>
+                    <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>  <span class="n">flexDirection</span><span class="p">:</span> <span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">justifyContent</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">}}</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">container</span><span class="p">}</span><span class="o">&gt;</span>
+                            <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">txtBorder</span><span class="p">}</span><span class="o">&gt;</span>
+                                <span class="o">&lt;</span><span class="n">Text</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">txtName</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">name2</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+                                <span class="o">&lt;</span><span class="n">TextInput</span>
+                                    <span class="n">underlineColorAndroid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;transparent&#39;</span><span class="p">}</span>
+                                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">password</span><span class="p">}</span>
+                                    <span class="n">multiline</span><span class="o">=</span><span class="p">{</span><span class="n">false</span><span class="p">}</span>
+                                    <span class="n">placeholder</span><span class="o">=</span><span class="p">{</span><span class="n">txtHide2</span><span class="p">}</span>
+                                    <span class="n">password</span><span class="o">=</span><span class="p">{</span><span class="n">ispassword2</span><span class="p">}</span>
+                                    <span class="n">secureTextEntry</span><span class="o">=</span><span class="p">{</span><span class="n">true</span><span class="p">}</span>
+                                    <span class="n">onChangeText</span><span class="o">=</span><span class="p">{(</span><span class="n">text</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                                        <span class="n">this</span><span class="o">.</span><span class="n">setState</span><span class="p">({</span>
+                                            <span class="n">Password</span><span class="p">:</span> <span class="n">text</span>
+                                        <span class="p">})</span>
+                                        <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+                                    <span class="p">}}</span>
+                                    <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">Password</span><span class="p">}</span>
+                                <span class="o">/&gt;</span>
+                            <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+                        <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+                    <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+
+                    <span class="c1">#登陆按钮</span>
+                    <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>  <span class="n">flexDirection</span><span class="p">:</span> <span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">justifyContent</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">alignItems</span><span class="p">:</span> <span class="s1">&#39;stretch&#39;</span><span class="p">}}</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">Button</span> <span class="n">raised</span> <span class="n">primary</span>
+                            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;登陆 / 注册&quot;</span>
+                            <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">container</span><span class="p">:{</span><span class="n">borderRadius</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="n">width</span><span class="p">:</span><span class="mi">320</span><span class="p">},</span><span class="n">text</span><span class="p">:{</span><span class="n">fontSize</span><span class="p">:</span><span class="mi">19</span><span class="p">}}}</span>
+                            <span class="c1">#设置点击事件</span>
+                            <span class="n">onPress</span> <span class="o">=</span> <span class="p">{()</span><span class="o">=&gt;</span><span class="n">this</span><span class="o">.</span><span class="n">_Check</span><span class="p">()}</span>
+                        <span class="o">/&gt;</span>
+                    <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+                <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+
+                <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">flex</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span><span class="n">height</span><span class="p">:</span> <span class="mi">50</span> <span class="p">}}</span> <span class="o">&gt;&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">#调用底部Toast函数 (更多用法参考 native-base)</span>
+    <span class="n">showtoast</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="nb">type</span><span class="p">){</span>
+        <span class="n">Toast</span><span class="o">.</span><span class="n">show</span><span class="p">({</span>
+            <span class="n">text</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+            <span class="n">buttonText</span><span class="p">:</span> <span class="s2">&quot;好的&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="p">:</span> <span class="nb">type</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+    <span class="n">const</span> <span class="n">styles</span> <span class="o">=</span> <span class="n">StyleSheet</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+        <span class="n">container</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">alignItems</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="n">flexDirection</span><span class="p">:</span> <span class="s1">&#39;row&#39;</span>
+        <span class="p">},</span>
+        <span class="n">txtBorder</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+            <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">borderWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">borderColor</span><span class="p">:</span> <span class="s1">&#39;#51A7F9&#39;</span><span class="p">,</span>
+            <span class="n">marginLeft</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+            <span class="n">marginRight</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+            <span class="n">borderRadius</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+            <span class="n">flexDirection</span><span class="p">:</span> <span class="s1">&#39;row&#39;</span><span class="p">,</span>
+            <span class="n">justifyContent</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">txtName</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">height</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="n">width</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+            <span class="n">marginLeft</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="n">fontSize</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+            <span class="n">marginTop</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+            <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;#51A7F9&#39;</span><span class="p">,</span>
+            <span class="n">marginRight</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="n">fontSize</span><span class="p">:</span> <span class="mi">14</span>
+        <span class="p">},</span>
+        <span class="n">textInput</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+            <span class="n">width</span><span class="p">:</span> <span class="n">screenW</span><span class="o">-</span><span class="mi">180</span>
+        <span class="p">},</span>
+        <span class="n">password</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+            <span class="n">width</span><span class="p">:</span> <span class="n">screenW</span><span class="o">-</span><span class="mi">180</span>
+        <span class="p">},</span>
+        <span class="n">button</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">alignItems</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="n">backgroundColor</span><span class="p">:</span> <span class="s1">&#39;#DDDDDD&#39;</span><span class="p">,</span>
+            <span class="n">padding</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="n">borderRadius</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span>
+            <span class="n">flexDirection</span><span class="p">:</span> <span class="s1">&#39;row&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>实现登陆的服务器代码<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>如果没有后台服务器，也可以在本机简单逻辑判断。</p>
+<p><a class="reference external" href="https://reactnative.cn/docs/network/">React Native发送http请求的方式</a>
+:Fetch、ajax或第三方的axios等，以下我使用RN官方的Fetch为例。</p>
+<dl class="simple">
+<dt>我的逻辑：</dt><dd><p>我为了方便，登陆和注册使用同一个按钮，首先询问该用户名的用户是否存在，不存在即注册，存在即判断密码是否正确。</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#服务器地址</span>
+<span class="n">const</span> <span class="n">server</span><span class="o">=</span><span class="s2">&quot;http://xxx.xxx.xxx.xxx:port/&quot;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">Login</span> <span class="n">extends</span> <span class="n">Component</span><span class="p">{</span>
+    <span class="c1">#为了方便定义了取值函数</span>
+    <span class="n">getUsername</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">Username</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">getPassword</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">Password</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">#检测是否存在账户</span>
+    <span class="n">_Check</span><span class="p">(){</span>
+        <span class="c1">#判断是否不合法</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">getUsername</span><span class="p">()</span><span class="o">==</span><span class="s2">&quot;&quot;</span><span class="o">||</span><span class="n">this</span><span class="o">.</span><span class="n">getPassword</span><span class="p">()</span><span class="o">==</span><span class="s2">&quot;&quot;</span><span class="p">){</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;请检查用户名和密码&quot;</span><span class="p">,</span><span class="s2">&quot;warning&quot;</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">#发送请求询问该用户名</span>
+        <span class="n">fetch</span><span class="p">(</span><span class="n">server</span><span class="o">+</span><span class="s1">&#39;api/user/searchbyname?username=&#39;</span><span class="o">+</span><span class="n">this</span><span class="o">.</span><span class="n">getUsername</span><span class="p">(),</span> <span class="p">{</span>
+            <span class="n">method</span><span class="p">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+        <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">Json</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="c1">#根据服务器response值判断为登陆还是注册</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">Json</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>   <span class="n">this</span><span class="o">.</span><span class="n">_Login</span><span class="p">();</span>
+            <span class="k">else</span>                      <span class="n">this</span><span class="o">.</span><span class="n">_adduser</span><span class="p">();</span>
+        <span class="p">})</span>
+        <span class="o">.</span><span class="n">catch</span><span class="p">((</span><span class="n">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="c1">#显示黄色Toast</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;网络连接失败&quot;</span><span class="p">,</span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
+        <span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="n">_adduser</span><span class="p">(){</span>
+        <span class="n">fetch</span><span class="p">(</span><span class="n">server</span><span class="o">+</span><span class="s1">&#39;api/user/adduser?username=&#39;</span><span class="o">+</span><span class="n">this</span><span class="o">.</span><span class="n">getUsername</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&amp;nickname=&#39;</span><span class="o">+</span><span class="n">this</span><span class="o">.</span><span class="n">getUsername</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&amp;password=&#39;</span><span class="o">+</span><span class="n">this</span><span class="o">.</span><span class="n">getPassword</span><span class="p">(),</span> <span class="p">{</span>
+            <span class="n">method</span><span class="p">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+        <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">Json</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="c1">#将账密存在本地，下次自动登陆</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">storeData</span><span class="p">(</span><span class="n">Json</span><span class="p">);</span>
+        <span class="p">})</span>
+        <span class="c1">#success显示绿色Toast</span>
+        <span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;注册成功，祝您愉快&quot;</span><span class="p">,</span><span class="s2">&quot;success&quot;</span><span class="p">))</span>
+        <span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Main&quot;</span><span class="p">))</span>
+    <span class="p">};</span>
+
+    <span class="n">_Login</span><span class="p">(){</span>
+        <span class="c1">#设置一个flag标记，不过这是很不优雅的写法（不要学）</span>
+        <span class="n">var</span> <span class="n">flag</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">fetch</span><span class="p">(</span><span class="n">server</span><span class="o">+</span><span class="s1">&#39;api/user/getuserinfo?username=&#39;</span><span class="o">+</span><span class="n">this</span><span class="o">.</span><span class="n">getUsername</span><span class="p">(),</span> <span class="p">{</span>
+            <span class="n">method</span><span class="p">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+        <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">Json</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">password</span><span class="o">==</span><span class="n">this</span><span class="o">.</span><span class="n">getPassword</span><span class="p">()){</span>
+                <span class="k">return</span> <span class="n">Json</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="n">flag</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;密码错误或用户名已被占用&quot;</span><span class="p">,</span><span class="s2">&quot;warning&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">Json</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+            <span class="c1">#将账密存在本地，下次自动登陆</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">storeData</span><span class="p">(</span><span class="n">Json</span><span class="p">);</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;欢迎使用！&quot;</span><span class="p">,</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+        <span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+            <span class="c1">#跳转至Main页面</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">navigation</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Main&quot;</span><span class="p">)</span>
+        <span class="p">})</span><span class="o">.</span><span class="n">catch</span><span class="p">((</span><span class="n">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">showtoast</span><span class="p">(</span><span class="s2">&quot;网络连接失败&quot;</span><span class="p">,</span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>老用户自动登陆<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#引入AsyncStorage</span>
+<span class="kn">import</span> <span class="nn">AsyncStorage</span> <span class="kn">from</span> <span class="s1">&#39;@react-native-community/async-storage&#39;</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">Login</span> <span class="n">extends</span> <span class="n">Component</span><span class="p">{</span>
+    <span class="c1">#.....</span>
+
+    <span class="c1">#组件生命周期自动调用</span>
+    <span class="n">componentWillMount</span><span class="p">(){</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">getData</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="c1">#存储</span>
+    <span class="n">storeData</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="n">Json</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">const</span> <span class="n">first</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;@username&quot;</span><span class="p">,</span> <span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">userName</span><span class="p">]</span>
+        <span class="n">const</span> <span class="n">second</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;@password&quot;</span><span class="p">,</span> <span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">password</span><span class="p">]</span>
+        <span class="c1">#因为userID是int不是String 所以特别处理一下</span>
+        <span class="n">const</span> <span class="n">third</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;@userid&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="o">+</span><span class="n">Json</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">userID</span><span class="p">]</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="c1">#将值存在本地</span>
+            <span class="k">await</span> <span class="n">AsyncStorage</span><span class="o">.</span><span class="n">multiSet</span><span class="p">([</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="n">catch</span><span class="p">(</span><span class="n">e</span><span class="p">){</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">#获取</span>
+    <span class="n">getData</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">const</span> <span class="n">_username</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AsyncStorage</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="s1">&#39;@username&#39;</span><span class="p">)</span>
+            <span class="n">const</span> <span class="n">_password</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AsyncStorage</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="s1">&#39;@password&#39;</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">_username</span> <span class="o">!==</span> <span class="n">null</span><span class="o">&amp;&amp;</span><span class="n">_password</span><span class="o">!==</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">#将username和password自动填入</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">setState</span><span class="p">({</span>
+                    <span class="n">Username</span><span class="p">:</span> <span class="n">_username</span><span class="p">,</span>
+                    <span class="n">Password</span><span class="p">:</span> <span class="n">_password</span><span class="p">,</span>
+                <span class="p">});</span>
+                <span class="c1">#调用登陆函数</span>
+                <span class="n">this</span><span class="o">.</span><span class="n">_Login</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="n">catch</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1"># error value</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="react-native8.html" class="btn btn-neutral float-right" title="react-native进阶:秒嘀云+Nativebase实现短信验证码登陆" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="react-native6.html" class="btn btn-neutral float-left" title="react-native初识：我使用的组件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

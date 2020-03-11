@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>IOS 内购—奔溃一条龙 &mdash; HicoDR  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  
+  <link rel="alternate" type="application/atom+xml"  href="../blog/atom.xml" title="HicoDR Blog">
+  
+  
+  <link href="True" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> HicoDR
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">简介</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">关于 HicoDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-post.html">博客更新计划</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ablog.html">我如何创建自己的博客</a></li>
+</ul>
+<p class="caption"><span class="caption-text">react-native</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native1.html">react-native考察：对比Flutter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native2.html">react-native入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native3.html">react-native初识:目录结构与HelloWorld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native4.html">react-native初识: state 和 props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native5.html">react-native初识:布局和CSS样式、第三方库的引入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native6.html">react-native初识：我使用的组件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native7.html">react-native实战:轮播引导和登陆注册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native8.html">react-native进阶:秒嘀云+Nativebase实现短信验证码登陆</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native9.html">react-native实战:支付宝接入app支付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../react-native/react-native10.html">react-native扩展:IOS踩坑纪录</a></li>
+</ul>
+<p class="caption"><span class="caption-text">杂项</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../other/bs4.html">bs4爬虫实战:全家Family网站攻略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other/pythread.html">Python多线程：Family数据批量生成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other/openssh.html">Paramiko：Python+ssh做快乐网管</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other/fiddler.html">Fiddler:借助抓包工具写手机APP的Python脚本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Web 后端</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../backend/springboot1.html">Springboot初识:了解Spring</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HicoDR</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>IOS 内购—奔溃一条龙</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ios/iap.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ios">
+<span id="header-n0"></span><h1>IOS 内购—奔溃一条龙<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h1>
+<p>上交App Store
+的应用果然被退了回来，居然只出了两个问题，这是我始料未及的。</p>
+<ol class="arabic simple">
+<li><p>info.plist里面申请权限的内容没有具体说清楚。</p></li>
+<li><p>不允许直接在应用内使用其他付款方式或跳转支付，而要使用 IAP（App Store
+内购）。</p></li>
+</ol>
+<p>头好疼….</p>
+<div class="section" id="header-n22">
+<span id="id1"></span><h2>内购标准逻辑（官方）<a class="headerlink" href="#header-n22" title="Permalink to this headline">¶</a></h2>
+<p>先贴一张系统顺序图（笑）</p>
+<div class="figure align-default">
+<img alt="../_images/react-native-iap.svg" src="../_images/react-native-iap.svg" /></div>
+<ol class="arabic simple">
+<li><p>程序向服务器发送请求，获得一份产品列表。</p></li>
+<li><p>服务器返回包含产品标识符的列表。</p></li>
+<li><p>程序向App Store发送请求，得到产品的信息。</p></li>
+<li><p>App Store返回产品信息。</p></li>
+<li><p>程序把返回的产品信息显示给用户（App的store界面）</p></li>
+<li><p>用户选择某个产品</p></li>
+<li><p>程序向App Store发送支付请求</p></li>
+<li><p>App Store处理支付请求并返回交易完成信息。</p></li>
+<li><p>程序从信息中获得数据，并发送至服务器。</p></li>
+<li><p>服务器纪录数据，并进行审(我们的)查。</p></li>
+<li><p>服务器将数据发给App Store来验证该交易的有效性。</p></li>
+<li><p>App Store对收到的数据进行解析，返回该数据和说明其是否有效的标识。</p></li>
+<li><p>服务器读取返回的数据，确定用户购买的内容。</p></li>
+<li><p>服务器将购买的内容传递给程序。</p></li>
+</ol>
+<p><strong>看完我头就秃了 什么??? 我千疮百孔的支付逻辑要被迫重生了嘛？</strong></p>
+</div>
+<div class="section" id="header-n61">
+<span id="id2"></span><h2>协议、银行卡信息的填写<a class="headerlink" href="#header-n61" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.jianshu.com/p/4f5f0b45b083">https://www.jianshu.com/p/4f5f0b45b083</a></p>
+<p><strong>当然，是交给甲方或者项目经理做了</strong></p>
+</div>
+<div class="section" id="header-n71">
+<span id="id3"></span><h2>配置内购产品、测试账号<a class="headerlink" href="#header-n71" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.jianshu.com/p/89acda082b07">https://www.jianshu.com/p/89acda082b07</a></p>
+<p><a class="reference external" href="https://www.jianshu.com/p/d65c7c0027b8">https://www.jianshu.com/p/d65c7c0027b8</a></p>
+<p>当然，这个很简单，仅仅是在Apple的服务器上加一个产品列表和一个沙箱账号</p>
+</div>
+<div class="section" id="header-n80">
+<span id="id4"></span><h2>修改项目代码<a class="headerlink" href="#header-n80" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rn">
+<span id="header-n86"></span><h3>RN端<a class="headerlink" href="#rn" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/chirag04/react-native-in-app-utils">react-native-in-app-utils</a>
+：前端调用时使用的组件（仅有IOS）</p>
+<p><a class="reference external" href="https://github.com/dooboolab/react-native-iap">react-native-iap</a>
+：Android和IOS都可以使用的内购组件</p>
+<p>熟读完上述两个库之后，你就无敌了（整个支付流程烂熟于心）。</p>
+</div>
+<div class="section" id="header-n120">
+<span id="id5"></span><h3>服务端<a class="headerlink" href="#header-n120" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://blog.csdn.net/endtheme_xin/article/details/83087223">https://blog.csdn.net/endtheme_xin/article/details/83087223</a></p>
+<p>这是Springboot 也就是 JAVA端实现IAP的一份代码（令人头秃）</p>
+<p><a class="reference external" href="https://blog.csdn.net/kaikai136412162/article/details/79670622">https://blog.csdn.net/kaikai136412162/article/details/79670622</a></p>
+<p>Python的一份，但是仅仅是测试，不是很全。</p>
+</div>
+</div>
+<div class="section" id="header-n132">
+<span id="id6"></span><h2>真机调试<a class="headerlink" href="#header-n132" title="Permalink to this headline">¶</a></h2>
+<p>内购支付在模拟器上是永远失败的。</p>
+<p>所以只能真机调试（谁买得起IOS呢）</p>
+<p>所以，我选择<a class="reference external" href="https://www.testin.cn/">云真机</a> 。</p>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HicoDR
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

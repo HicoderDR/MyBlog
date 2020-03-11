@@ -5,7 +5,7 @@
   <updated>2019-09-04T00:00:00Z</updated>
   <link href="http://HicoderDR.github.io" />
   <link href="http://HicoderDR.github.io/blog/atom.xml" rel="self" />
-  <generator uri="http://ablog.readthedocs.org" version="0.9.5">ABlog</generator>
+  <generator uri="https://ablog.readthedocs.org" version="0.10.3">ABlog</generator>
   <entry xml:base="http://HicoderDR.github.io/blog/atom.xml">
     <title type="text">博客更新计划</title>
     <id>http://HicoderDR.github.io/first-post.html</id>
