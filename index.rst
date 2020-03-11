@@ -39,10 +39,10 @@
    react-native/react-native3.rst
    react-native/react-native4.rst
    react-native/react-native5.rst
-   react-native/react-native6.rst
    react-native/react-native7.rst
    react-native/react-native8.rst
    react-native/react-native9.rst
+   react-native/react-native6.rst
 
 
 .. toctree::

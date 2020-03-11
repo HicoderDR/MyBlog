@@ -366,14 +366,14 @@ React-native扩展：优化的组件
 .. _header-n6:
 
 11. `react-native-image-progress <https://github.com/oblador/react-native-image-progress>`__ ：图片加载中的进度动画
----------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
 
 很简洁的文档，建议搭配下面的组件使用。
 
 .. _header-n55:
 
 12. `react-native-img-cache <https://github.com/wcandillon/react-native-img-cache>`__\ ：本地缓存的图片组件
--------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 
 .. _header-n15:
 
@@ -385,7 +385,7 @@ CachedImage
 basic usage
 ^^^^^^^^^^^
 
-.. code:: react
+.. code::
 
    import {CachedImage} from "react-native-img-cache";
 
@@ -402,7 +402,7 @@ basic usage
 costum usage
 ^^^^^^^^^^^^
 
-.. code:: react
+.. code::
 
    <CustomCachedImage
 
@@ -490,6 +490,6 @@ might have different version with different paths in the cache.
 .. _header-n62:
 
 13. `react-native-dialog <https://github.com/mmazzarolo/react-native-dialog>`__\ ：弹出对话框
------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 
 良心组件，Android和IOS都有
