@@ -29,7 +29,7 @@ MAC虚拟机配置流程
 为了省下租借（购买）MAC电脑的钱,一定要交社费进入万恶的
 `黑苹果社区 <https://osx.cx/>`_
 
-我在这里获取了MacOS mojave 10.14的黑苹果镜像（当然，在此你就可以选择另一条道路——安装双系统而非虚拟机）
+我在这里获取了MacOS mojave 10.14（请安装新版本）的黑苹果镜像（当然，在此你就可以选择另一条道路——安装双系统而非虚拟机）
 
 并通过
 `ENFI下载器 <http://www.enfi.cloud/>`_
@@ -101,10 +101,9 @@ MAC terminal proxy 代理
 下载）
 。
 
-RN的要求是Xcode 10及以上，我下载了Xcode 10.1，追悔莫及。
+RN的要求是Xcode 10及以上，我下载了Xcode 10.1，追悔莫及,一定要下载最新的版本（非bata、dev）。
 
-为什么这么说，这是因为之后的很多bug，我在stackoverflow上搜索时，
-见到了这样的解决办法：
+为什么这么说，这是因为之后的很多bug，我在stackoverflow上搜索时，见到了这样的解决办法:
     I updated Xcode 10.1 to Xcode 11.1 and then the problem fixed.
 
 我看到这个都要哭出来了----
@@ -181,7 +180,7 @@ react-native-yunpeng-alipay 支付宝支付
 ----------------------------------------
 这个组件是真的害人，他没有编译ios版本，很快我就使用了
 `新的支付宝接入的实现方法 <https://www.jianshu.com/p/0728c30820c3>`_
-。
+。然而，这并没有什么卵用，只要想上架APPStore，就必须使用AppStore内购（IAP）。
 
 react-native-progress 加载动画
 ---------------------------------------

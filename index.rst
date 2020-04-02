@@ -53,6 +53,14 @@
    ios/iap.rst
 
 .. toctree::
+   :caption: Lua脚本
+   :maxdepth: 2
+
+   lua/touchsprite.rst
+   lua/dota2rpg.rst
+   lua/dota2ai.rst
+
+.. toctree::
    :caption: 杂项
    :maxdepth: 2
 

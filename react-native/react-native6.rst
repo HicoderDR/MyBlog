@@ -357,11 +357,9 @@ async的特点：
 
 .. image:: ../_static/image-zoom2.gif 
 
-.. _header-n0:
 
 React-native扩展：优化的组件
-============================
-
+*********************************
 .. contents::
 .. _header-n6:
 
@@ -427,12 +425,10 @@ Art 版本问题在IOS上报错。
 .. _header-n45:
 
 ImageCache
-~~~~~~~~~~
 
 .. _header-n25:
 
 clear() ：清空
-^^^^^^^^^^^^^^
 
 Remove cache entries and all physical files.
 
@@ -443,7 +439,6 @@ Remove cache entries and all physical files.
 .. _header-n28:
 
 bust(uri) ：选择一个url从缓存中剔除
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ``ImageCache`` can be used to bust an image from the local cache. This
 removes the cache entry but it **does not remove any physical files**.
@@ -455,7 +450,6 @@ removes the cache entry but it **does not remove any physical files**.
 .. _header-n31:
 
 cancel(uri) ： 取消对某张图的下载
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It can also be used to cancel the download of an image. This can be very
 useful when `scrolling through
@@ -468,7 +462,6 @@ images <https://medium.com/@wcandillon/image-pipeline-with-react-native-listview
 .. _header-n34:
 
 on(uri, observer, immutable) 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``ImageCache`` class can register observers to the cache.
 
